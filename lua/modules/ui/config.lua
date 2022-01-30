@@ -103,13 +103,17 @@ function config.lualine()
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
-			theme = "catppuccin",
+			theme = "gruvbox-flat",
 			disabled_filetypes = {},
 			component_separators = "|",
 			section_separators = { left = "", right = "" },
 		},
 		sections = {
-			lualine_a = { "mode" },
+			lualine_a = { "mode" , {"filename", symbols = {
+                modified = "✥",
+                readonly = "[-]",
+                unnamed = "Noname"
+            }}},
 			lualine_b = { { "branch" }, { "diff" } },
 			lualine_c = {
 				{ "lsp_progress" },
@@ -334,4 +338,12 @@ function config.indent_blankline()
 	vim.cmd("autocmd CursorMoved * IndentBlanklineRefresh")
 end
 
+function config.tokyonight()
+        vim.g.tokyonight_italic_functions = true
+        vim.g.tokyonight_style = "night"
+end
+
+function config.gruvbox()
+    vim.g.gruvbox_flat_style = "hard"
+end
 return config

@@ -130,6 +130,7 @@ local function load_options()
 		vim.o[name] = value
 	end
 	bind_option(bw_local)
+	vim.g.c_syntax_for_h = true
 end
 
 load_options()

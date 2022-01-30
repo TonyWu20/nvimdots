@@ -38,5 +38,7 @@ ui["akinsho/nvim-bufferline.lua"] = {
 	config = conf.nvim_bufferline,
 }
 ui["dstein64/nvim-scrollview"] = { opt = true, event = "BufRead" }
+ui["folke/tokyonight.nvim"] = {opt = false, config = conf.tokyonight}
+ui["eddyekofo94/gruvbox-flat.nvim"] = {opt = false, config = conf.gruvbox}
 
 return ui
