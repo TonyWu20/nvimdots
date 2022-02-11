@@ -7,7 +7,7 @@ tools["nvim-telescope/telescope.nvim"] = {
 	opt = true,
 	module = "telescope",
 	cmd = "Telescope",
-	config = conf.telescope,
+config = conf.telescope,
 	requires = {
 		{ "nvim-lua/plenary.nvim", opt = false },
 		{ "nvim-lua/popup.nvim", opt = true },
@@ -34,6 +34,7 @@ tools["michaelb/sniprun"] = {
 	run = "bash ./install.sh",
 	cmd = { "SnipRun", "'<,'>SnipRun" },
 }
+
 tools["folke/which-key.nvim"] = {
 	opt = true,
 	keys = ",",

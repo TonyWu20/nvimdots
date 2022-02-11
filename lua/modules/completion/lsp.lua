@@ -112,9 +112,8 @@ local enhance_server_opts = {
 	["clangd"] = function(opts)
 		opts.args = {
 			"--background-index",
-			"-std=c++20",
+			"-std=c99",
 			"--pch-storage=memory",
-			"--clang-tidy",
 			"--suggest-missing-includes",
 		}
 		opts.capabilities.offsetEncoding = { "utf-16" }
@@ -275,7 +274,6 @@ efmls.init({
 -- Require `efmls-configs-nvim`'s config here
 
 local vint = require("efmls-configs.linters.vint")
-local clangtidy = require("efmls-configs.linters.clang_tidy")
 local eslint = require("efmls-configs.linters.eslint")
 local flake8 = require("efmls-configs.linters.flake8")
 local shellcheck = require("efmls-configs.linters.shellcheck")
@@ -283,7 +281,7 @@ local staticcheck = require("efmls-configs.linters.staticcheck")
 
 local black = require("efmls-configs.formatters.black")
 local luafmt = require("efmls-configs.formatters.stylua")
-local clangfmt = require("efmls-configs.formatters.clang_format")
+local clang = require("efmls-configs.formatters.clang_format")
 local goimports = require("efmls-configs.formatters.goimports")
 local prettier = require("efmls-configs.formatters.prettier")
 local shfmt = require("efmls-configs.formatters.shfmt")
@@ -307,8 +305,8 @@ flake8 = vim.tbl_extend("force", flake8, {
 efmls.setup({
 	vim = { formatter = vint },
 	lua = { formatter = luafmt },
-	c = { formatter = clangfmt, linter = clangtidy },
-	cpp = { formatter = clangfmt, linter = clangtidy },
+	c = { formatter = clang, linter = clang },
+	cpp = { formatter = clang, linter = clang },
 	go = { formatter = goimports, linter = staticcheck },
 	python = { formatter = black },
 	vue = { formatter = prettier },

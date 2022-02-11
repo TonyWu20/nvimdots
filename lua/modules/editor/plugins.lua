@@ -103,7 +103,7 @@ editor["norcalli/nvim-colorizer.lua"] = {
 	config = conf.nvim_colorizer,
 }
 editor["rmagatti/auto-session"] = {
-	opt = true,
+    opt = true,
 	cmd = { "SaveSession", "RestoreSession", "DeleteSession" },
 	config = conf.auto_session,
 }

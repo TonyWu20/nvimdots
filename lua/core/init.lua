@@ -46,7 +46,7 @@ local disable_distribution_plugins = function()
 end
 
 local leader_map = function()
-	vim.g.mapleader = ","
+	vim.g.mapleader = " "
 	vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
 	vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
 end
@@ -90,34 +90,35 @@ local dashboard_config = function()
 		[[⠿⠛⠛⠛⠛⠛⠛⠻⢿⣿⣿⣿⣿⣯⣟⠷⢷⣿⡿⠋⠀⠀⠀⠀⣵⡀⢠⡿⠋⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
 		[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⠂⠀⠀⠀⠀⠀⢀⣽⣿⣿⣿⣿⣿⣿⣿⣍⠛⠿⣿⣿⣿⣿⣿⣿]],
 	}
+    
 
 	vim.g.dashboard_custom_section = {
 		change_colorscheme = {
-			description = { " Scheme change              comma s c " },
+			description = { " Scheme change              <leader> s c " },
 			command = "DashboardChangeColorscheme",
 		},
 		find_frecency = {
-			description = { " File frecency              comma f r " },
+			description = { " File frecency              <leader> f r " },
 			command = "Telescope frecency",
 		},
 		find_history = {
-			description = { " File history               comma f e " },
+			description = { " File history               <leader> f e " },
 			command = "DashboardFindHistory",
 		},
 		find_project = {
-			description = { " Project find               comma f p " },
+			description = { " Project find               <leader> f p " },
 			command = "Telescope project",
 		},
 		find_file = {
-			description = { " File find                  comma f f " },
+			description = { " File find                  <leader> f f " },
 			command = "DashboardFindFile",
 		},
 		file_new = {
-			description = { " File new                   comma f n " },
+			description = { " File new                   <leader> f n " },
 			command = "DashboardNewFile",
 		},
 		find_word = {
-			description = { " Word find                  comma f w " },
+			description = { " Word find                  <leader> f w " },
 			command = "DashboardFindWord",
 		},
 	}
