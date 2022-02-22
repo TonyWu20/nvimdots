@@ -38,6 +38,12 @@ function config.telescope()
 			use_less = true,
 			set_env = { ["COLORTERM"] = "truecolor" },
 		},
+        pickers = {
+            lsp = {
+                themes = "cursor",
+                jump_type = "never"
+            }
+        },
 		extensions = {
 			fzf = {
 				fuzzy = true, -- false will only do exact matching

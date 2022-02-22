@@ -160,7 +160,7 @@ function config.nvim_tree()
 		update_cwd = false,
 		update_to_buf_dir = { enable = true, auto_open = true },
 		diagnostics = {
-			enable = false,
+			enable = true,
 			icons = { hint = "", info = "", warning = "", error = "" },
 		},
 		update_focused_file = {
@@ -185,6 +185,7 @@ function config.nvim_tree()
 		trash = { cmd = "trash", require_confirm = true },
 	})
 end
+vim.g.nvim_tree_git_hl = true
 
 function config.nvim_bufferline()
 	require("bufferline").setup({

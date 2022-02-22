@@ -7,6 +7,10 @@ editor["itchyny/vim-cursorword"] = {
 	event = { "BufReadPre", "BufNewFile" },
 	config = conf.vim_cursorwod,
 }
+editor["chaoren/vim-wordmotion"] =
+{
+    opt = false
+}
 editor["terrortylor/nvim-comment"] = {
 	opt = false,
 	config = function()

@@ -41,7 +41,7 @@ local plug_map = {
 	["n|<C-Down>"] = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(1)"):with_noremap():with_silent(),
 	["n|<leader>ca"] = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
 	["v|<leader>ca"] = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-	["n|gd"] = map_cr("Lspsaga preview_definition"):with_noremap():with_silent(),
+	["n|gd"] = map_cr("lua require'telescope.builtin'.lsp_definitions(require('telescope.themes').get_cursor({jump_type='never',layout_config={height=0.5, width=0.5}}))"):with_noremap():with_silent(),
 	["n|gD"] = map_cr("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
 	["n|gh"] = map_cr("lua vim.lsp.buf.references()"):with_noremap():with_silent(),
 	["n|<A-d>"] = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
