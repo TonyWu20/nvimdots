@@ -14,6 +14,7 @@ function config.aerial()
 		-- This can be a filetype map (see :help aerial-filetype-map)
 		backends = { "lsp", "treesitter", "markdown" },
 
+<<<<<<< HEAD
 		-- Enum: persist, close, auto, global
 		--   persist - aerial window will stay open until closed
 		--   close   - aerial window will close when original file is no longer visible
@@ -182,7 +183,13 @@ function config.cmp()
 	vim.cmd([[highlight CmpItemKindText guifg=#81A1C1 guibg=NONE]])
 	vim.cmd([[highlight CmpItemKindFunction guifg=#B48EAD guibg=NONE]])
 	vim.cmd([[highlight CmpItemKindMethod guifg=#B48EAD guibg=NONE]])
+=======
+function config.aerial()
+	require("aerial").setup({})
+end
+>>>>>>> d02897edd25b3c9ffbcbda0a398977fc0630e284
 
+function config.cmp()
 	local t = function(str)
 		return vim.api.nvim_replace_termcodes(str, true, true, true)
 	end
@@ -191,8 +198,35 @@ function config.cmp()
 		return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 	end
 
+	local border = function(hl)
+		return {
+			{ "╭", hl },
+			{ "─", hl },
+			{ "╮", hl },
+			{ "│", hl },
+			{ "╯", hl },
+			{ "─", hl },
+			{ "╰", hl },
+			{ "│", hl },
+		}
+	end
+
+	local cmp_window = require("cmp.utils.window")
+
+	function cmp_window:has_scrollbar()
+		return false
+	end
+
 	local cmp = require("cmp")
 	cmp.setup({
+		window = {
+			completion = {
+				border = border("CmpBorder"),
+			},
+			documentation = {
+				border = border("CmpDocBorder"),
+			},
+		},
 		sorting = {
 			comparators = {
 				cmp.config.compare.offset,
@@ -253,7 +287,7 @@ function config.cmp()
 			end,
 		},
 		-- You can set mappings if you want
-		mapping = {
+		mapping = cmp.mapping.preset.insert({
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
 			["<C-p>"] = cmp.mapping.select_prev_item(),
 			["<C-n>"] = cmp.mapping.select_next_item(),
@@ -290,7 +324,7 @@ function config.cmp()
 					fallback()
 				end
 			end,
-		},
+		}),
 		snippet = {
 			expand = function(args)
 				require("luasnip").lsp_expand(args.body)
@@ -313,11 +347,14 @@ function config.cmp()
 end
 
 function config.luasnip()
+	vim.o.runtimepath = vim.o.runtimepath .. "," .. os.getenv("HOME") .. "/.config/nvim/my-snippets/,"
 	require("luasnip").config.set_config({
 		history = true,
 		updateevents = "TextChanged,TextChangedI",
 	})
-	require("luasnip/loaders/from_vscode").load()
+	require("luasnip.loaders.from_lua").lazy_load()
+	require("luasnip.loaders.from_vscode").lazy_load()
+	require("luasnip.loaders.from_snipmate").lazy_load()
 end
 
 -- function config.tabnine()
@@ -335,65 +372,50 @@ function config.autopairs()
 	cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
 end
 
-function config.nvim_lsputils()
-	if vim.fn.has("nvim-0.5.1") == 1 then
-		vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
-		vim.lsp.handlers["textDocument/references"] = require("lsputil.locations").references_handler
-		vim.lsp.handlers["textDocument/definition"] = require("lsputil.locations").definition_handler
-		vim.lsp.handlers["textDocument/declaration"] = require("lsputil.locations").declaration_handler
-		vim.lsp.handlers["textDocument/typeDefinition"] = require("lsputil.locations").typeDefinition_handler
-		vim.lsp.handlers["textDocument/implementation"] = require("lsputil.locations").implementation_handler
-		vim.lsp.handlers["textDocument/documentSymbol"] = require("lsputil.symbols").document_handler
-		vim.lsp.handlers["workspace/symbol"] = require("lsputil.symbols").workspace_handler
-	else
-		local bufnr = vim.api.nvim_buf_get_number(0)
+function config.bqf()
+	vim.cmd([[
+    hi BqfPreviewBorder guifg=#F2CDCD ctermfg=71
+    hi link BqfPreviewRange Search
+]])
 
-		vim.lsp.handlers["textDocument/codeAction"] = function(_, _, actions)
-			require("lsputil.codeAction").code_action_handler(nil, actions, nil, nil, nil)
-		end
-
-		vim.lsp.handlers["textDocument/references"] = function(_, _, result)
-			require("lsputil.locations").references_handler(nil, result, {
-				bufnr = bufnr,
-			}, nil)
-		end
-
-		vim.lsp.handlers["textDocument/definition"] = function(_, method, result)
-			require("lsputil.locations").definition_handler(nil, result, {
-				bufnr = bufnr,
-				method = method,
-			}, nil)
-		end
-
-		vim.lsp.handlers["textDocument/declaration"] = function(_, method, result)
-			require("lsputil.locations").declaration_handler(nil, result, {
-				bufnr = bufnr,
-				method = method,
-			}, nil)
-		end
-
-		vim.lsp.handlers["textDocument/typeDefinition"] = function(_, method, result)
-			require("lsputil.locations").typeDefinition_handler(nil, result, {
-				bufnr = bufnr,
-				method = method,
-			}, nil)
-		end
-
-		vim.lsp.handlers["textDocument/implementation"] = function(_, method, result)
-			require("lsputil.locations").implementation_handler(nil, result, {
-				bufnr = bufnr,
-				method = method,
-			}, nil)
-		end
-
-		vim.lsp.handlers["textDocument/documentSymbol"] = function(_, _, result, _, bufn)
-			require("lsputil.symbols").document_handler(nil, result, { bufnr = bufn }, nil)
-		end
-
-		vim.lsp.handlers["textDocument/symbol"] = function(_, _, result, _, bufn)
-			require("lsputil.symbols").workspace_handler(nil, result, { bufnr = bufn }, nil)
-		end
-	end
+	require("bqf").setup({
+		auto_enable = true,
+		auto_resize_height = true, -- highly recommended enable
+		preview = {
+			win_height = 12,
+			win_vheight = 12,
+			delay_syntax = 80,
+			border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+			should_preview_cb = function(bufnr, qwinid)
+				local ret = true
+				local bufname = vim.api.nvim_buf_get_name(bufnr)
+				local fsize = vim.fn.getfsize(bufname)
+				if fsize > 100 * 1024 then
+					-- skip file size greater than 100k
+					ret = false
+				elseif bufname:match("^fugitive://") then
+					-- skip fugitive buffer
+					ret = false
+				end
+				return ret
+			end,
+		},
+		-- make `drop` and `tab drop` to become preferred
+		func_map = {
+			drop = "o",
+			openc = "O",
+			split = "<C-s>",
+			tabdrop = "<C-t>",
+			tabc = "",
+			ptogglemode = "z,",
+		},
+		filter = {
+			fzf = {
+				action_for = { ["ctrl-s"] = "split", ["ctrl-t"] = "tab drop" },
+				extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+			},
+		},
+	})
 end
 
 return config

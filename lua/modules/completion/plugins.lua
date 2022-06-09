@@ -11,20 +11,31 @@ completion["creativenull/efmls-configs-nvim"] = {
 	requires = "neovim/nvim-lspconfig",
 }
 completion["williamboman/nvim-lsp-installer"] = {
+	opt = false,
+}
+completion["kevinhwang91/nvim-bqf"] = {
+	opt = true,
+	ft = "qf",
+	config = conf.bqf,
+}
+completion["tami5/lspsaga.nvim"] = {
 	opt = true,
 	after = "nvim-lspconfig",
 }
-completion["RishabhRD/nvim-lsputils"] = {
+completion["stevearc/aerial.nvim"] = {
 	opt = true,
 	after = "nvim-lspconfig",
-	config = conf.nvim_lsputils,
+	config = conf.aerial,
 }
+<<<<<<< HEAD
 completion["tami5/lspsaga.nvim"] = { opt = true, after = "nvim-lspconfig" }
 completion["stevearc/aerial.nvim"] = {
 	opt = true,
 	after = "nvim-lspconfig",
 	config = conf.aerial,
 }
+=======
+>>>>>>> d02897edd25b3c9ffbcbda0a398977fc0630e284
 completion["kosayoda/nvim-lightbulb"] = {
 	opt = true,
 	after = "nvim-lspconfig",

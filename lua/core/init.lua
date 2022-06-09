@@ -23,26 +23,27 @@ local createdir = function()
 end
 
 local disable_distribution_plugins = function()
-	vim.g.loaded_fzf = 1
-	vim.g.loaded_gtags = 1
-	vim.g.loaded_gzip = 1
-	vim.g.loaded_tar = 1
-	vim.g.loaded_tarPlugin = 1
-	vim.g.loaded_zip = 1
-	vim.g.loaded_zipPlugin = 1
-	vim.g.loaded_getscript = 1
-	vim.g.loaded_getscriptPlugin = 1
-	vim.g.loaded_vimball = 1
-	vim.g.loaded_vimballPlugin = 1
-	vim.g.loaded_matchit = 1
-	vim.g.loaded_matchparen = 1
-	vim.g.loaded_2html_plugin = 1
-	vim.g.loaded_logiPat = 1
-	vim.g.loaded_rrhelper = 1
-	vim.g.loaded_netrw = 1
-	vim.g.loaded_netrwPlugin = 1
-	vim.g.loaded_netrwSettings = 1
-	vim.g.loaded_netrwFileHandlers = 1
+	vim.g.did_load_filetypes = 1
+	vim.g.did_load_fzf = 1
+	vim.g.did_load_gtags = 1
+	vim.g.did_load_gzip = 1
+	vim.g.did_load_tar = 1
+	vim.g.did_load_tarPlugin = 1
+	vim.g.did_load_zip = 1
+	vim.g.did_load_zipPlugin = 1
+	vim.g.did_load_getscript = 1
+	vim.g.did_load_getscriptPlugin = 1
+	vim.g.did_load_vimball = 1
+	vim.g.did_load_vimballPlugin = 1
+	vim.g.did_load_matchit = 1
+	vim.g.did_load_matchparen = 1
+	vim.g.did_load_2html_plugin = 1
+	vim.g.did_load_logiPat = 1
+	vim.g.did_load_rrhelper = 1
+	vim.g.did_load_netrw = 1
+	vim.g.did_load_netrwPlugin = 1
+	vim.g.did_load_netrwSettings = 1
+	vim.g.did_load_netrwFileHandlers = 1
 end
 
 local leader_map = function()
@@ -52,8 +53,8 @@ local leader_map = function()
 end
 
 local neovide_config = function()
-	vim.cmd([[set guifont=JetBrainsMono\ Nerd\ Font:h12]])
-	vim.g.neovide_refresh_rate = 60
+	vim.cmd([[set guifont=JetBrainsMono\ Nerd\ Font:h15]])
+	vim.g.neovide_refresh_rate = 120
 	vim.g.neovide_cursor_vfx_mode = "railgun"
 	vim.g.neovide_no_idle = true
 	vim.g.neovide_cursor_animation_length = 0.03
@@ -65,6 +66,7 @@ local neovide_config = function()
 	vim.g.neovide_cursor_vfx_particle_density = 5.0
 end
 
+<<<<<<< HEAD
 local dashboard_config = function()
 	vim.g.dashboard_footer_icon = "🐬 "
 	vim.g.dashboard_default_executive = "telescope"
@@ -122,9 +124,16 @@ local dashboard_config = function()
 			command = "DashboardFindWord",
 		},
 	}
+=======
+local function check_conda()
+	local venv = os.getenv("CONDA_PREFIX")
+	if venv then
+		vim.g.python3_host_prog = venv .. "/bin/python"
+	end
+>>>>>>> d02897edd25b3c9ffbcbda0a398977fc0630e284
 end
 
-local clipboard_settings = function()
+local clipboard_config = function()
 	vim.cmd([[
     let g:clipboard = {
           \   'name': 'win32yank-wsl',
@@ -138,7 +147,6 @@ local clipboard_settings = function()
           \   },
           \   'cache_enabled': 0,
           \ }
-
     ]])
 end
 
@@ -150,8 +158,8 @@ local load_core = function()
 
 	pack.ensure_plugins()
 	neovide_config()
-	dashboard_config()
-	-- clipboard_settings()
+	check_conda()
+	-- clipboard_config()
 
 	require("core.options")
 	require("core.mapping")
@@ -159,7 +167,12 @@ local load_core = function()
 	require("core.event")
 	pack.load_compile()
 
+<<<<<<< HEAD
 	vim.cmd([[colorscheme gruvbox-flat]])
+=======
+	-- vim.cmd([[set background=light]])
+	vim.cmd([[colorscheme catppuccin]])
+>>>>>>> d02897edd25b3c9ffbcbda0a398977fc0630e284
 end
 
 load_core()

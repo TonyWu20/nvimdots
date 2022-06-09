@@ -1,5 +1,4 @@
 local config = {}
-local dap_dir = vim.fn.stdpath("data") .. "/dapinstall/"
 local sessions_dir = vim.fn.stdpath("data") .. "/sessions/"
 
 function config.nvim_treesitter()
@@ -7,7 +6,29 @@ function config.nvim_treesitter()
 	vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
 
 	require("nvim-treesitter.configs").setup({
+<<<<<<< HEAD
 		ensure_installed = {"bash", "c", "lua", "yaml", "latex", "make", "python", "rust", "swift"},
+=======
+		ensure_installed = {
+			"bash",
+			"c",
+			"cpp",
+			"lua",
+			"go",
+			"gomod",
+			"json",
+			"yaml",
+			"latex",
+			"make",
+			"python",
+			"rust",
+			"html",
+			"javascript",
+			"typescript",
+			"vue",
+			"css",
+		},
+>>>>>>> d02897edd25b3c9ffbcbda0a398977fc0630e284
 		highlight = { enable = true, disable = { "vim" } },
 		textobjects = {
 			select = {
@@ -47,34 +68,16 @@ function config.nvim_treesitter()
 		},
 		context_commentstring = { enable = true, enable_autocmd = false },
 		matchup = { enable = true },
-		context = { enable = true, throttle = true },
 	})
+	require("nvim-treesitter.install").prefer_git = true
+	local parsers = require("nvim-treesitter.parsers").get_parser_configs()
+	for _, p in pairs(parsers) do
+		p.install_info.url = p.install_info.url:gsub("https://github.com/", "git@github.com:")
+	end
 end
 
 function config.matchup()
 	vim.cmd([[let g:matchup_matchparen_offscreen = {'method': 'popup'}]])
-end
-
-function config.nvim_gps()
-	require("nvim-gps").setup({
-		icons = {
-			["class-name"] = " ", -- Classes and class-like objects
-			["function-name"] = " ", -- Functions
-			["method-name"] = " ", -- Methods (functions inside class-like objects)
-		},
-		languages = {
-			-- You can disable any language individually here
-			["c"] = true,
-			["cpp"] = true,
-			["go"] = true,
-			["java"] = true,
-			["javascript"] = true,
-			["lua"] = true,
-			["python"] = true,
-			["rust"] = true,
-		},
-		separator = " > ",
-	})
 end
 
 function config.autotag()
@@ -158,17 +161,6 @@ function config.toggleterm()
 end
 
 function config.dapui()
-	local dap, dapui = require("dap"), require("dapui")
-	dap.listeners.after.event_initialized["dapui_config"] = function()
-		dapui.open()
-	end
-	dap.listeners.before.event_terminated["dapui_config"] = function()
-		dapui.close()
-	end
-	dap.listeners.before.event_exited["dapui_config"] = function()
-		dapui.close()
-	end
-
 	require("dapui").setup({
 		icons = { expanded = "▾", collapsed = "▸" },
 		mappings = {
@@ -205,6 +197,53 @@ end
 
 function config.dap()
 	local dap = require("dap")
+	local dapui = require("dapui")
+
+	dap.listeners.after.event_initialized["dapui_config"] = function()
+		dapui.open()
+	end
+	dap.listeners.after.event_terminated["dapui_config"] = function()
+		dapui.close()
+	end
+	dap.listeners.after.event_exited["dapui_config"] = function()
+		dapui.close()
+	end
+
+	vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+
+	dap.adapters.lldb = {
+		type = "executable",
+		command = "/usr/bin/lldb-vscode",
+		name = "lldb",
+	}
+	dap.configurations.cpp = {
+		{
+			name = "Launch",
+			type = "lldb",
+			request = "launch",
+			program = function()
+				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+			end,
+			cwd = "${workspaceFolder}",
+			stopOnEntry = false,
+			args = {},
+
+			-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+			--
+			--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+			--
+			-- Otherwise you might get the following error:
+			--
+			--    Error on launch: Failed to attach to the target process
+			--
+			-- But you should be aware of the implications:
+			-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+			runInTerminal = false,
+		},
+	}
+
+	dap.configurations.c = dap.configurations.cpp
+	dap.configurations.rust = dap.configurations.cpp
 
 	dap.adapters.go = function(callback, config)
 		local stdout = vim.loop.new_pipe(false)
@@ -258,7 +297,7 @@ function config.dap()
 
 	dap.adapters.python = {
 		type = "executable",
-		command = os.getenv("HOME") .. "/.local/share/nvim/dapinstall/python_dbg/bin/python",
+		command = os.getenv("HOME") .. "/.local/share/nvim/dapinstall/python/bin/python",
 		args = { "-m", "debugpy.adapter" },
 	}
 	dap.configurations.python = {
@@ -303,6 +342,43 @@ function config.specs()
 		ignore_filetypes = {},
 		ignore_buftypes = { nofile = true },
 	})
+end
+
+function config.tabout()
+	require("tabout").setup({
+		tabkey = "<A-l>",
+		backwards_tabkey = "<A-h>",
+		ignore_beginning = false,
+		act_as_tab = true,
+		enable_backward = true,
+		completion = true,
+		tabouts = {
+			{ open = "'", close = "'" },
+			{ open = '"', close = '"' },
+			{ open = "`", close = "`" },
+			{ open = "(", close = ")" },
+			{ open = "[", close = "]" },
+			{ open = "{", close = "}" },
+		},
+		exclude = {},
+	})
+end
+
+function config.imselect()
+	-- fcitx5 need a manual config
+	if vim.fn.executable("fcitx5-remote") == 1 then
+		vim.cmd([[
+		let g:im_select_get_im_cmd = ["fcitx5-remote"]
+		let g:im_select_default = '1'
+		let g:ImSelectSetImCmd = {
+			\ key ->
+			\ key == 1 ? ['fcitx5-remote', '-c'] :
+			\ key == 2 ? ['fcitx5-remote', '-o'] :
+			\ key == 0 ? ['fcitx5-remote', '-c'] :
+			\ execute("throw 'invalid im key'")
+			\ }
+			]])
+	end
 end
 
 return config
