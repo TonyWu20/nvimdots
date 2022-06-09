@@ -341,10 +341,12 @@ end
 
 function config.tokyonight()
         vim.g.tokyonight_italic_functions = true
-        vim.g.tokyonight_style = "night"
+        vim.g.tokyonight_style = "storm"
 end
 
 function config.gruvbox()
     vim.g.gruvbox_flat_style = "hard"
+    vim.g.gruvbox_transparent = false
+    vim.g.gruvbox_italic_functions= true
 end
 return config

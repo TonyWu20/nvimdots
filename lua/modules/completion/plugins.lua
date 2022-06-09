@@ -20,6 +20,11 @@ completion["RishabhRD/nvim-lsputils"] = {
 	config = conf.nvim_lsputils,
 }
 completion["tami5/lspsaga.nvim"] = { opt = true, after = "nvim-lspconfig" }
+completion["stevearc/aerial.nvim"] = {
+	opt = true,
+	after = "nvim-lspconfig",
+	config = conf.aerial,
+}
 completion["kosayoda/nvim-lightbulb"] = {
 	opt = true,
 	after = "nvim-lspconfig",

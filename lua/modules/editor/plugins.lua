@@ -2,10 +2,22 @@ local editor = {}
 local conf = require("modules.editor.config")
 
 editor["junegunn/vim-easy-align"] = { opt = true, cmd = "EasyAlign" }
-editor["itchyny/vim-cursorword"] = {
-	opt = true,
-	event = { "BufReadPre", "BufNewFile" },
-	config = conf.vim_cursorwod,
+editor["RRethy/vim-illuminate"] = {
+	event = "BufRead",
+	config = function()
+		vim.g.Illuminate_highlightUnderCursor = 0
+		vim.g.Illuminate_ftblacklist = {
+			"help",
+			"dashboard",
+			"alpha",
+			"packer",
+			"norg",
+			"DoomInfo",
+			"NvimTree",
+			"Outline",
+			"toggleterm",
+		}
+	end,
 }
 editor["chaoren/vim-wordmotion"] =
 {
@@ -20,11 +32,6 @@ editor["terrortylor/nvim-comment"] = {
 			end,
 		})
 	end,
-}
-editor["simrat39/symbols-outline.nvim"] = {
-	opt = true,
-	cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
-	config = conf.symbols_outline,
 }
 editor["nvim-treesitter/nvim-treesitter"] = {
 	opt = true,
@@ -98,6 +105,7 @@ editor["vimlab/split-term.vim"] = { opt = true, cmd = { "Term", "VTerm" } }
 editor["akinsho/nvim-toggleterm.lua"] = {
 	opt = true,
 	event = "BufRead",
+    branch = "main",
 	config = conf.toggleterm,
 }
 editor["numtostr/FTerm.nvim"] = { opt = true, event = "BufRead" }
