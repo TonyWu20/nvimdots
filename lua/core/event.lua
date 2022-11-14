@@ -125,7 +125,9 @@ function autocmd.load_autocmds()
 			-- Check if file changed when its window is focus, more eager than 'autoread'
 			{ "FocusGained", "* checktime" },
 			-- Equalize window dimensions when resizing vim window
-			{ "VimResized", "*", [[tabdo wincmd =]] },
+			-- { "VimResized", "*", [[tabdo wincmd =]] },
+			-- Use `focus.nvim` to resize the split in golden ratio.
+			{ "VimResized", "*", [[tabdo lua require('focus').resize()]] },
 		},
 		ft = {
 			{ "FileType", "*", "setlocal formatoptions-=cro" },
