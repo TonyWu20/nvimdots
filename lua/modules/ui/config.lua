@@ -358,7 +358,7 @@ function config.notify()
 
 	notify.setup({
 		---@usage Animation style one of { "fade", "slide", "fade_in_slide_out", "static" }
-		stages = "slide",
+		stages = "static",
 		---@usage Function called when a new window is opened, use for changing win settings/config
 		on_open = nil,
 		---@usage Function called when a window is closed
@@ -449,7 +449,7 @@ function config.lualine()
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
-			theme = "catppuccin",
+			theme = "gruvbox-flat",
 			disabled_filetypes = {},
 			component_separators = "|",
 			section_separators = { left = "", right = "" },
@@ -886,6 +886,13 @@ end
 function config.fidget()
 	require("fidget").setup({
 		window = { blend = 0 },
+	})
+end
+
+function config.focus()
+	require("focus").setup({
+		autoresize = true,
+		excluded_filetypes = { "fterm", "term", "toggleterm" },
 	})
 end
 

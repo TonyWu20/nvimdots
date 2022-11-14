@@ -17,10 +17,6 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 	event = "BufReadPost",
 	config = conf.nvim_treesitter,
 }
-editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
-	opt = true,
-	after = "nvim-treesitter",
-}
 editor["p00f/nvim-ts-rainbow"] = {
 	opt = true,
 	after = "nvim-treesitter",

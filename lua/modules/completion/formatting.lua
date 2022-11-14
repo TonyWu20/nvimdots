@@ -166,7 +166,7 @@ function M.format(opts)
 			vim.notify(
 				string.format("Format successfully with %s!", client.name),
 				vim.log.levels.INFO,
-				{ title = "LSP Format Success!" }
+				{ title = "LSP Format Success!", timeout = 2000 }
 			)
 		elseif err then
 			vim.notify(
