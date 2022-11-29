@@ -24,7 +24,7 @@ tools["nvim-telescope/telescope-project.nvim"] = {
 tools["nvim-telescope/telescope-frecency.nvim"] = {
 	opt = true,
 	after = "telescope-project.nvim",
-	requires = { { "tami5/sqlite.lua", opt = true } },
+	requires = { { "kkharji/sqlite.lua", opt = true } },
 }
 tools["jvgrootveld/telescope-zoxide"] = { opt = true, after = "telescope-frecency.nvim" }
 tools["michaelb/sniprun"] = {
@@ -35,7 +35,7 @@ tools["michaelb/sniprun"] = {
 
 tools["folke/which-key.nvim"] = {
 	opt = true,
-	keys = ",",
+	keys = "<leader>",
 	config = conf.which_key,
 }
 tools["folke/trouble.nvim"] = {
@@ -48,10 +48,6 @@ tools["gelguy/wilder.nvim"] = {
 	event = "CmdlineEnter",
 	config = conf.wilder,
 	requires = { { "romgrk/fzy-lua-native", after = "wilder.nvim" } },
-}
-tools["nathom/filetype.nvim"] = {
-	opt = false,
-	config = conf.filetype,
 }
 
 return tools
