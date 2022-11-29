@@ -895,25 +895,4 @@ function config.fidget()
 	})
 end
 
-<<<<<<< HEAD
-function config.focus()
-	require("focus").setup({
-		autoresize = true,
-		excluded_filetypes = { "fterm", "term", "toggleterm" },
-	})
-end
-
-||||||| 4a06682
-=======
-function config.tokyonight()
-        vim.g.tokyonight_italic_functions = true
-        vim.g.tokyonight_style = "storm"
-end
-
-function config.gruvbox()
-    vim.g.gruvbox_flat_style = "hard"
-    vim.g.gruvbox_transparent = false
-    vim.g.gruvbox_italic_functions= true
-end
->>>>>>> ayamir-main
 return config
