@@ -227,6 +227,10 @@ nvim_lsp.html.setup({
 	on_attach = custom_attach,
 })
 
+nvim_lsp.sourcekit.setup({
+    filetypes = {"swift"},
+})
+
 local efmls = require("efmls-configs")
 
 -- Init `efm-langserver` here.
@@ -283,6 +287,7 @@ efmls.setup({
 	scss = { formatter = prettier },
 	sh = { formatter = shfmt, linter = shellcheck },
 	markdown = { formatter = prettier },
+    swift = {formatter = prettier},
 	-- rust = {formatter = rustfmt},
 })
 

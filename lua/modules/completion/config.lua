@@ -123,7 +123,6 @@ function config.lspsaga()
 			end,
 		},
 	})
-end
 
 function config.cmp()
 	local icons = {

@@ -45,12 +45,26 @@ function config.telescope()
 			file_sorter = require("telescope.sorters").get_fuzzy_file,
 			generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 		},
+        pickers = {
+            lsp = {
+                themes = "cursor",
+                jump_type = "never"
+            }
+        },
 		extensions = {
 			fzf = {
+<<<<<<< HEAD
+				fuzzy = true, -- false will only do exact matching
+				override_generic_sorter = true, -- override the generic sorter
+				override_file_sorter = true, -- override the file sorter
+				case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+				-- the default case_mode is "smart_case"
+=======
 				fuzzy = false,
 				override_generic_sorter = true,
 				override_file_sorter = true,
 				case_mode = "smart_case",
+>>>>>>> d02897edd25b3c9ffbcbda0a398977fc0630e284
 			},
 			frecency = {
 				show_scores = true,
@@ -73,6 +87,7 @@ function config.telescope()
 	require("telescope").load_extension("project")
 	require("telescope").load_extension("zoxide")
 	require("telescope").load_extension("frecency")
+    -- require("telescope").load_extension("session-lens")
 end
 
 function config.trouble()

@@ -25,4 +25,5 @@ lang["iamcco/markdown-preview.nvim"] = {
 }
 lang["chrisbra/csv.vim"] = { opt = true, ft = "csv" }
 lang["khaveesh/vim-fish-syntax"] = { opt = true, ft = "fish" }
+lang["tami5/swift.nvim"] = { opt = true, ft = "swift", config = conf.swift}
 return lang

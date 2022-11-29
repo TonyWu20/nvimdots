@@ -42,8 +42,16 @@ editor["andymass/vim-matchup"] = {
 	opt = true,
 	after = "nvim-treesitter",
 }
-editor["rainbowhxch/accelerated-jk.nvim"] = { opt = true, event = "BufWinEnter", config = conf.accelerated_jk }
-editor["hrsh7th/vim-eft"] = { opt = true, event = "BufReadPost" }
+editor["rainbowhxch/accelerated-jk.nvim"] = {
+	opt = true,
+	event = "BufWinEnter",
+	config = conf.accelerated_jk,
+}
+editor["rhysd/clever-f.vim"] = {
+	opt = true,
+	event = "BufReadPost",
+	config = conf.clever_f,
+}
 editor["romainl/vim-cool"] = {
 	opt = true,
 	event = { "CursorMoved", "InsertEnter" },
@@ -70,7 +78,7 @@ editor["NvChad/nvim-colorizer.lua"] = {
 	config = conf.nvim_colorizer,
 }
 editor["rmagatti/auto-session"] = {
-	opt = true,
+    opt = true,
 	cmd = { "SaveSession", "RestoreSession", "DeleteSession" },
 	config = conf.auto_session,
 }

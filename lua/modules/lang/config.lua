@@ -1,5 +1,31 @@
 local config = {}
 
+<<<<<<< HEAD
+function config.swift()
+    require'swift_env'.setup {
+  --- Normal/Visual Mode leader key
+  leader = "<leader>",
+  --- Format Configuration
+  format = {
+    -- path to the swiftformat binary.
+    cmd = "swiftformat",
+    -- command to run formater manually
+    ex = "Sfmt",
+    -- mapping to run formater manually
+    mapping = "eF",
+    -- whether to format on write.
+    auto = true,
+    -- options to be passed when calling swiftformat from the command line
+    options = {},
+    -- path to config file from root directory
+    config_file = ".swiftformat",
+    -- create config format config file when it doesn't exists?
+    config_create_if_unreadable = true,
+    -- the file content to be generated.
+    config_default_content = [[]],
+  }
+}
+=======
 function config.rust_tools()
 	vim.api.nvim_command([[packadd nvim-lspconfig]])
 	vim.api.nvim_command([[packadd lsp_signature.nvim]])
@@ -200,13 +226,8 @@ function config.lang_go()
 	vim.g.go_doc_keywordprg_enabled = 0
 	vim.g.go_def_mapping_enabled = 0
 	vim.g.go_code_completion_enabled = 0
+>>>>>>> d02897edd25b3c9ffbcbda0a398977fc0630e284
 end
 
--- function config.lang_org()
---     require("orgmode").setup({
---         org_agenda_files = {"~/Sync/org/*"},
---         org_default_notes_file = "~/Sync/org/refile.org"
---     })
--- end
 
 return config

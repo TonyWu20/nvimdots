@@ -30,7 +30,7 @@ local function load_options()
 		shiftround = true,
 		timeout = true,
 		ttimeout = true,
-		timeoutlen = 500,
+		timeoutlen = 0,
 		ttimeoutlen = 0,
 		updatetime = 100,
 		redrawtime = 1500,
@@ -120,6 +120,11 @@ local function load_options()
 	for name, value in pairs(global_local) do
 		vim.o[name] = value
 	end
+<<<<<<< HEAD
+	bind_option(bw_local)
+	vim.g.c_syntax_for_h = true
+=======
+>>>>>>> d02897edd25b3c9ffbcbda0a398977fc0630e284
 end
 
 load_options()
