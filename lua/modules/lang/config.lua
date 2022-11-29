@@ -171,6 +171,16 @@ function config.rust_tools()
 			-- standalone file support
 			-- setting it to false may improve startup time
 			standalone = true,
+			settings = {
+				["rust-analyer"] = {
+					checkOnSave = {
+						command = "clippy",
+					},
+					diagnostics = {
+						disabled = { "inactive-code" },
+					},
+				},
+			},
 		}, -- rust-analyer options
 
 		-- debugging stuff

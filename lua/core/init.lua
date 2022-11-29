@@ -130,9 +130,9 @@ local load_core = function()
 	pack.load_compile()
 
 	-- vim.api.nvim_command([[set background=light]])
-	vim.g.gruvbox_flat_style = "hard"
-	-- vim.api.nvim_command([[colorscheme catppuccin]])
-	vim.api.nvim_command([[colorscheme gruvbox-flat]])
+	-- vim.g.gruvbox_flat_style = "hard"
+	vim.api.nvim_command([[colorscheme catppuccin]])
+	-- vim.api.nvim_command([[colorscheme gruvbox-flat]])
 end
 
 load_core()

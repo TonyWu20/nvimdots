@@ -208,11 +208,11 @@ function config.catppuccin()
 			mocha = {
 				rosewater = "#F5E0DC",
 				flamingo = "#F2CDCD",
-				mauve = "#DDB6F2",
+				mauve = "#CBA6F7",
 				pink = "#F5C2E7",
 				red = "#F28FAD",
 				maroon = "#E8A2AF",
-				peach = "#F8BD96",
+				peach = "#FAB387",
 				yellow = "#FAE3B0",
 				green = "#ABE9B3",
 				blue = "#96CDFB",
@@ -227,8 +227,8 @@ function config.catppuccin()
 				overlay1 = "#988BA2",
 				overlay0 = "#6E6C7E",
 				surface2 = "#6E6C7E",
-				surface1 = "#575268",
-				surface0 = "#302D41",
+				surface1 = "#45475a",
+				surface0 = "#313244",
 
 				base = "#1E1E2E",
 				mantle = "#1A1826",
@@ -242,6 +242,7 @@ function config.catppuccin()
 					CursorLineNr = { fg = cp.green },
 					Search = { bg = cp.surface1, fg = cp.pink, style = { "bold" } },
 					IncSearch = { bg = cp.pink, fg = cp.surface1 },
+					Pmenu = { bg = cp.base, fg = cp.overlay2 },
 
 					-- For native lsp configs.
 					DiagnosticVirtualTextError = { bg = cp.none },
@@ -449,7 +450,7 @@ function config.lualine()
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
-			theme = "gruvbox-flat",
+			theme = "catppuccin",
 			disabled_filetypes = {},
 			component_separators = "|",
 			section_separators = { left = "", right = "" },
