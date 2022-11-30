@@ -114,7 +114,6 @@ local dashboard_config = function()
 		[[⠿⠛⠛⠛⠛⠛⠛⠻⢿⣿⣿⣿⣿⣯⣟⠷⢷⣿⡿⠋⠀⠀⠀⠀⣵⡀⢠⡿⠋⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
 		[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⠂⠀⠀⠀⠀⠀⢀⣽⣿⣿⣿⣿⣿⣿⣿⣍⠛⠿⣿⣿⣿⣿⣿⣿]],
 	}
-    
 
 	vim.g.dashboard_custom_section = {
 		change_colorscheme = {
@@ -195,8 +194,6 @@ local load_core = function()
 	require("core.event")
 	pack.load_compile()
 
-	-- vim.cmd([[set background=light]])
-	vim.cmd([[colorscheme catppuccin]])
 	-- vim.api.nvim_command([[set background=light]])
 	-- vim.g.gruvbox_flat_style = "hard"
 	vim.api.nvim_command([[colorscheme catppuccin]])
