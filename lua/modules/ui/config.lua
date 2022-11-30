@@ -243,7 +243,7 @@ function config.catppuccin()
 					CursorLineNr = { fg = cp.green },
 					Search = { bg = cp.surface1, fg = cp.pink, style = { "bold" } },
 					IncSearch = { bg = cp.pink, fg = cp.surface1 },
-					-- Pmenu = { bg = cp.base, fg = cp.overlay2 },
+					Pmenu = { bg = cp.base, fg = cp.overlay2 },
 					Keyword = { fg = cp.pink },
 					Type = { fg = cp.blue },
 					Typedef = { fg = cp.yellow },
@@ -454,7 +454,7 @@ function config.lualine()
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
-			theme = "gruvbox-flat",
+			theme = "catppuccin",
 			disabled_filetypes = {},
 			component_separators = "|",
 			section_separators = { left = "", right = "" },
@@ -893,6 +893,10 @@ function config.fidget()
 	require("fidget").setup({
 		window = { blend = 0 },
 	})
+end
+
+function config.focus()
+	require("focus").setup()
 end
 
 return config

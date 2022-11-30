@@ -58,9 +58,6 @@ ui["j-hui/fidget.nvim"] = {
 	event = "BufReadPost",
 	config = conf.fidget,
 }
-ui["eddyekofo94/gruvbox-flat.nvim"] = {
-	opt = false,
-}
 ui["beauwilliams/focus.nvim"] = {
 	config = conf.focus,
 }
