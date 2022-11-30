@@ -6,7 +6,7 @@ tools["nvim-telescope/telescope.nvim"] = {
 	opt = true,
 	module = "telescope",
 	cmd = "Telescope",
-config = conf.telescope,
+	config = conf.telescope,
 	requires = {
 		{ "nvim-lua/plenary.nvim", opt = false },
 		{ "nvim-lua/popup.nvim", opt = true },
@@ -26,16 +26,18 @@ tools["nvim-telescope/telescope-frecency.nvim"] = {
 	after = "telescope-project.nvim",
 	requires = { { "kkharji/sqlite.lua", opt = true } },
 }
-tools["jvgrootveld/telescope-zoxide"] = { opt = true, after = "telescope-frecency.nvim" }
+tools["jvgrootveld/telescope-zoxide"] = {
+	opt = true,
+	after = "telescope-frecency.nvim",
+}
 tools["michaelb/sniprun"] = {
 	opt = true,
 	run = "bash ./install.sh",
 	cmd = { "SnipRun", "'<,'>SnipRun" },
 }
-
 tools["folke/which-key.nvim"] = {
 	opt = true,
-	keys = "<leader>,",
+	keys = "<leader>",
 	config = conf.which_key,
 }
 tools["folke/trouble.nvim"] = {
@@ -48,6 +50,18 @@ tools["gelguy/wilder.nvim"] = {
 	event = "CmdlineEnter",
 	config = conf.wilder,
 	requires = { { "romgrk/fzy-lua-native", after = "wilder.nvim" } },
+}
+tools["folke/which-key.nvim"] = {
+	opt = false,
+	config = conf.which_key,
+}
+tools["mrjones2014/legendary.nvim"] = {
+	opt = true,
+	cmd = "Legendary",
+	config = conf.legendary,
+	requires = {
+		{ "stevearc/dressing.nvim", opt = false, config = conf.dressing },
+	},
 }
 
 return tools
