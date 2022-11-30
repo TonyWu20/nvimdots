@@ -69,7 +69,7 @@ local function load_options()
 		switchbuf = "usetab,uselast",
 		termguicolors = true,
 		timeout = true,
-		timeoutlen = 300,
+		timeoutlen = 500,
 		ttimeout = true,
 		ttimeoutlen = 0,
 		undodir = global.cache_dir .. "/undo//",
