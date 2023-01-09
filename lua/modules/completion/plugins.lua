@@ -56,6 +56,14 @@ completion["windwp/nvim-autopairs"] = {
 	after = "nvim-cmp",
 	config = conf.autopairs,
 }
+completion["dcampos/nvim-snippy"] = {
+	opt = true,
+	config = conf.nvim_snippy,
+}
+completion["dcampos/cmp-snippy"] = {
+	after = "nvim-snippy",
+	config = conf.cmp_snippy,
+}
 -- completion["zbirenbaum/copilot.lua"] = {
 -- 	event = "VimEnter",
 -- 	config = function()
