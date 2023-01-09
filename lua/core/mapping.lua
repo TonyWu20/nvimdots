@@ -8,7 +8,8 @@ local def_map = {
 	-- Vim map
 	["n|<S-Tab>"] = map_cr("normal za"):with_noremap():with_silent(),
 	["n|<C-x>k"] = map_cr("bdelete"):with_noremap():with_silent(),
-	["n|<C-s>"] = map_cu("write"):with_noremap(),
+	["n|<C-s>"] = map_cu("write"):with_noremap():with_silent(),
+	["n|<C-S-s>"] = map_cmd("execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"):with_silent():with_noremap(),
 	["n|Y"] = map_cmd("y$"),
 	["n|D"] = map_cmd("d$"),
 	["n|n"] = map_cmd("nzzzv"):with_noremap(),
@@ -23,7 +24,6 @@ local def_map = {
 	["n|<A-;>"] = map_cr("resize -2"):with_silent(),
 	["n|<A-'>"] = map_cr("resize +2"):with_silent(),
 	["n|<C-q>"] = map_cmd(":wq<CR>"),
-	["n|<A-q>"] = map_cmd(":Bwipeout<CR>"),
 	["n|<A-S-q>"] = map_cmd(":q!<CR>"),
 	["n|<leader>o"] = map_cr("setlocal spell! spelllang=en_us"),
 	-- Insert
@@ -40,7 +40,6 @@ local def_map = {
 	["c|<C-d>"] = map_cmd("<Del>"):with_noremap(),
 	["c|<C-h>"] = map_cmd("<BS>"):with_noremap(),
 	["c|<C-t>"] = map_cmd([[<C-R>=expand("%:p:h") . "/" <CR>]]):with_noremap(),
-	["c|w!!"] = map_cmd("execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"),
 	-- Visual
 	["v|J"] = map_cmd(":m '>+1<cr>gv=gv"),
 	["v|K"] = map_cmd(":m '<-2<cr>gv=gv"),

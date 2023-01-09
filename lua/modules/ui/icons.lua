@@ -29,7 +29,7 @@ local data = {
 		TypeParameter = "",
 		Unit = "",
 		Value = "",
-		Variable = "",
+		Variable = "",
 		-- ccls-specific icons.
 		TypeAlias = "",
 		Parameter = "",
@@ -108,6 +108,7 @@ local data = {
 		Perf = "",
 		Project = "",
 		Right = "",
+		RootFolderOpened = "",
 		Search = "",
 		Separator = "",
 		DoubleSeparator = "",
