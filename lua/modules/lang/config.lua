@@ -175,9 +175,6 @@ function config.rust_tools()
 			standalone = true,
 			settings = {
 				["rust-analyer"] = {
-					checkOnSave = {
-						command = "clippy",
-					},
 					diagnostics = {
 						disabled = { "inactive-code" },
 					},
