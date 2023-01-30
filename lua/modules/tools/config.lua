@@ -1,14 +1,6 @@
 local config = {}
 
 function config.telescope()
-	vim.api.nvim_command([[packadd sqlite.lua]])
-	vim.api.nvim_command([[packadd project.nvim]])
-	vim.api.nvim_command([[packadd telescope-fzf-native.nvim]])
-	vim.api.nvim_command([[packadd telescope-frecency.nvim]])
-	vim.api.nvim_command([[packadd telescope-zoxide]])
-	vim.api.nvim_command([[packadd telescope-live-grep-args.nvim]])
-	vim.api.nvim_command([[packadd telescope-undo.nvim]])
-
 	local icons = { ui = require("modules.ui.icons").get("ui", true) }
 	local telescope_actions = require("telescope.actions.set")
 	local fixfolds = {
@@ -334,16 +326,12 @@ function config.legendary()
 				d = "buffer: Sort by directory",
 				e = "buffer: Sort by extension",
 			},
-
 			d = {
 				name = "Dap commands",
-				b = "debug: Toggle breakpoint",
-				d = "debug: Terminate debug session",
-				r = "debug: Continue",
-				l = "debug: Open repl",
-				i = "debug: Step in",
-				o = "debug: Step out",
-				v = "debug: Step over",
+				b = "debug: Set breakpoint with condition",
+				c = "debug: Run to cursor",
+				l = "debug: Run last",
+				o = "debug: Open repl",
 			},
 			f = {
 				name = "Telescope commands",
@@ -378,14 +366,21 @@ function config.legendary()
 				r = "filetree: NvimTree refresh",
 			},
 			p = {
-				name = "Packer commands",
-				s = "packer: PackerSync",
-				i = "packer: PackerInstall",
-				c = "packer: PackerClean",
-				u = "packer: PackerUpdate",
+				name = "Package commands",
+				h = "package: Show",
+				s = "package: Sync",
+				i = "package: Install",
+				c = "package: Check",
+				d = "package: Debug",
+				l = "package: Log",
+				p = "package: Profile",
+				r = "package: Restore",
+				x = "package: Clean",
+				u = "package: Update",
 			},
 			s = {
-				name = "Session commands",
+				c = "lsp: Show cursor disgnostics",
+				l = "lsp: Show line disgnostics",
 				s = "sesson: Save session",
 				r = "sesson: Restore session",
 				d = "sesson: Delete session",
@@ -396,6 +391,7 @@ function config.legendary()
 				w = "lsp: Show workspace diagnostics",
 				q = "lsp: Show quickfix list",
 				l = "lsp: Show loclist",
+				r = "lsp: Show lsp references",
 			},
 		},
 		["g"] = {
@@ -404,7 +400,8 @@ function config.legendary()
 			D = "lsp: Goto definition",
 			h = "lsp: Show reference",
 			o = "lsp: Toggle outline",
-			r = "lsp: Rename",
+			r = "lsp: Rename in file range",
+			R = "lsp: Rename in project range",
 			s = "lsp: Signature help",
 			t = "lsp: Toggle trouble list",
 			b = "buffer: Buffer pick",
@@ -414,6 +411,12 @@ function config.legendary()
 				l = "git: Pull",
 			},
 		},
+		["<F6>"] = "debug: Run/Continue",
+		["<F7>"] = "debug: Terminate debug session",
+		["<F8>"] = "debug: Toggle breakpoint",
+		["<F9>"] = "debug: Step into",
+		["<F10>"] = "debug: Step out",
+		["<F11>"] = "debug: Step over",
 		["<leader>G"] = "git: Show fugitive",
 		["<leader>g"] = "git: Show lazygit",
 		["<leader>D"] = "git: Show diff",
@@ -422,6 +425,8 @@ function config.legendary()
 		["[g"] = "git: Goto prev hunk",
 		["g["] = "lsp: Goto prev diagnostic",
 		["g]"] = "lsp: Goto next diagnostic",
+		["<leader>ci"] = "lsp: Incoming calls",
+		["<leader>co"] = "lsp: Outgoing calls",
 		["<leader>w"] = "jump: Goto word",
 		["<leader>j"] = "jump: Goto line",
 		["<leader>k"] = "jump: Goto line",
