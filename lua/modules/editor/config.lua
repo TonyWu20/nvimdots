@@ -15,14 +15,23 @@ function config.nvim_treesitter()
 			"yaml",
 			"latex",
 			"make",
+			"markdown",
+			"markdown_inline",
 			"python",
 			"rust",
 			"html",
 		},
 		highlight = {
 			enable = true,
-			disable = { "vim" },
-			additional_vim_regex_highlighting = false,
+			disable = function(ft, bufnr)
+				if vim.tbl_contains({ "vim" }, ft) then
+					return true
+				end
+
+				local ok, is_large_file = pcall(vim.api.nvim_buf_get_var, bufnr, "bigfile_disable_treesitter")
+				return ok and is_large_file
+			end,
+			additional_vim_regex_highlighting = { "c", "cpp" },
 		},
 		textobjects = {
 			select = {
@@ -89,7 +98,6 @@ function config.illuminate()
 			"norg",
 			"NvimTree",
 			"Outline",
-			"packer",
 			"toggleterm",
 		},
 		under_cursor = false,
@@ -255,7 +263,6 @@ end
 function config.dap()
 	local icons = { dap = require("modules.ui.icons").get("dap") }
 
-	vim.api.nvim_command([[packadd nvim-dap-ui]])
 	local dap = require("dap")
 	local dapui = require("dapui")
 
@@ -424,26 +431,6 @@ function config.specs()
 	})
 end
 
-function config.tabout()
-	require("tabout").setup({
-		tabkey = "<A-l>",
-		backwards_tabkey = "<A-h>",
-		ignore_beginning = false,
-		act_as_tab = true,
-		enable_backward = true,
-		completion = true,
-		tabouts = {
-			{ open = "'", close = "'" },
-			{ open = '"', close = '"' },
-			{ open = "`", close = "`" },
-			{ open = "(", close = ")" },
-			{ open = "[", close = "]" },
-			{ open = "{", close = "}" },
-		},
-		exclude = {},
-	})
-end
-
 function config.imselect()
 	-- fcitx5 need a manual config
 	if vim.fn.executable("fcitx5-remote") == 1 then
@@ -520,6 +507,60 @@ function config.smartyank()
 			ssh_only = true, -- false to OSC52 yank also in local sessions
 			silent = false, -- true to disable the "n chars copied" echo
 			echo_hl = "Directory", -- highlight group of the OSC52 echo message
+		},
+	})
+end
+
+function config.tabout()
+	require("tabout").setup({
+		tabkey = "", -- key to trigger tabout, set to an empty string to disable
+		backwards_tabkey = "", -- key to trigger backwards tabout, set to an empty string to disable
+		act_as_tab = true, -- shift content if tab out is not possible
+		act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+		enable_backwards = true,
+		completion = true, -- if the tabkey is used in a completion pum
+		tabouts = {
+			{ open = "'", close = "'" },
+			{ open = '"', close = '"' },
+			{ open = "`", close = "`" },
+			{ open = "(", close = ")" },
+			{ open = "[", close = "]" },
+			{ open = "{", close = "}" },
+		},
+		ignore_beginning = true, -- if the cursor is at the beginning of a filled element it will rather tab out than shift the content
+		exclude = {}, -- tabout will ignore these filetypes
+	})
+end
+
+function config.bigfile()
+	local ftdetect = {
+		name = "ftdetect",
+		opts = { defer = true },
+		disable = function()
+			vim.api.nvim_set_option_value("filetype", "big_file_disabled_ft", { scope = "local" })
+		end,
+	}
+
+	local cmp = {
+		name = "nvim-cmp",
+		opts = { defer = true },
+		disable = function()
+			require("cmp").setup.buffer({ enabled = false })
+		end,
+	}
+
+	require("bigfile").config({
+		filesize = 1, -- size of the file in MiB
+		pattern = { "*" }, -- autocmd pattern
+		features = { -- features to disable
+			"indent_blankline",
+			"lsp",
+			"illuminate",
+			"treesitter",
+			"syntax",
+			"vimopts",
+			ftdetect,
+			cmp,
 		},
 	})
 end

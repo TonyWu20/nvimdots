@@ -72,7 +72,8 @@ function config.alpha()
 	dashboard.section.buttons.opts.hl = "String"
 
 	local function footer()
-		local total_plugins = #vim.tbl_keys(packer_plugins)
+		local stats = require("lazy").stats()
+		local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 		return "   Have Fun with neovim"
 			.. "   v"
 			.. vim.version().major
@@ -81,8 +82,10 @@ function config.alpha()
 			.. "."
 			.. vim.version().patch
 			.. "   "
-			.. total_plugins
-			.. " plugins"
+			.. stats.count
+			.. " plugins in "
+			.. ms
+			.. "ms"
 	end
 
 	dashboard.section.footer.val = footer()
@@ -103,6 +106,14 @@ function config.alpha()
 	}
 
 	alpha.setup(dashboard.opts)
+
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "LazyVimStarted",
+		callback = function()
+			dashboard.section.footer.val = footer()
+			pcall(vim.cmd.AlphaRedraw)
+		end,
+	})
 end
 
 function config.edge()
@@ -137,6 +148,7 @@ function config.catppuccin()
 			percentage = 0.15,
 		},
 		transparent_background = transparent_background,
+		show_end_of_buffer = false, -- show the '~' characters after the end of buffers
 		term_colors = true,
 		compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
 		styles = {
@@ -271,6 +283,9 @@ function config.catppuccin()
 					FidgetTask = { bg = cp.none, fg = cp.surface2 },
 					FidgetTitle = { fg = cp.blue, style = { "bold" } },
 
+					-- For trouble.nvim
+					TroubleNormal = { bg = cp.base },
+
 					-- For treesitter.
 					["@field"] = { fg = cp.rosewater },
 					["@property"] = { fg = cp.yellow },
@@ -309,7 +324,7 @@ function config.catppuccin()
 					-- ["@constant.macro"] = { fg = cp.mauve },
 
 					-- ["@label"] = { fg = cp.blue },
-					["@method"] = { style = { "italic" } },
+					["@method"] = { fg = cp.blue, style = { "italic" } },
 					["@namespace"] = { fg = cp.rosewater, style = {} },
 
 					["@punctuation.delimiter"] = { fg = cp.teal },
@@ -366,7 +381,6 @@ function config.catppuccin()
 end
 
 function config.neodim()
-	vim.api.nvim_command([[packadd nvim-treesitter]])
 	local blend_color = require("modules.utils").hl_to_rgb("Normal", true)
 
 	require("neodim").setup({
@@ -435,6 +449,7 @@ function config.lualine()
 		return ok and m.waiting and icons.misc.EscapeST or ""
 	end
 
+	local _cache = { context = "", bufnr = -1 }
 	local function lspsaga_symbols()
 		local exclude = {
 			["terminal"] = true,
@@ -446,14 +461,16 @@ function config.lualine()
 		if vim.api.nvim_win_get_config(0).zindex or exclude[vim.bo.filetype] then
 			return "" -- Excluded filetypes
 		else
+			local currbuf = vim.api.nvim_get_current_buf()
 			local ok, lspsaga = pcall(require, "lspsaga.symbolwinbar")
-			if ok then
-				if lspsaga.get_symbol_node() ~= nil then
-					return lspsaga.get_symbol_node()
-				else
-					return "" -- Cannot get node
-				end
+			if ok and lspsaga:get_winbar() ~= nil then
+				_cache.context = lspsaga:get_winbar()
+				_cache.bufnr = currbuf
+			elseif _cache.bufnr ~= currbuf then
+				_cache.context = "" -- Reset [invalid] cache (usually from another buffer)
 			end
+
+			return _cache.context
 		end
 	end
 
@@ -476,12 +493,6 @@ function config.lualine()
 		end
 		return icons.ui.RootFolderOpened .. cwd
 	end
-
-	local conditions = {
-		check_code_context = function()
-			return lspsaga_symbols() ~= ""
-		end,
-	}
 
 	local mini_sections = {
 		lualine_a = { "filetype" },
@@ -536,7 +547,7 @@ function config.lualine()
 		sections = {
 			lualine_a = { { "mode" } },
 			lualine_b = { { "branch" }, { "diff", source = diff_source } },
-			lualine_c = { { lspsaga_symbols, cond = conditions.check_code_context } },
+			lualine_c = { lspsaga_symbols },
 			lualine_x = {
 				{ escape_status },
 				{
@@ -588,10 +599,10 @@ function config.lualine()
 
 	-- Properly set background color for lspsaga
 	local winbar_bg = require("modules.utils").hl_to_rgb("StatusLine", true, "#000000")
-	require("modules.utils").extend_hl("LspSagaWinbarSep", { bg = winbar_bg })
-	for _, hlGroup in pairs(require("lspsaga.lspkind")) do
+	for _, hlGroup in pairs(require("lspsaga.lspkind").get_kind()) do
 		require("modules.utils").extend_hl("LspSagaWinbar" .. hlGroup[1], { bg = winbar_bg })
 	end
+	require("modules.utils").extend_hl("LspSagaWinbarSep", { bg = winbar_bg })
 end
 
 function config.nvim_tree()
@@ -601,7 +612,6 @@ function config.nvim_tree()
 		git = require("modules.ui.icons").get("git"),
 		ui = require("modules.ui.icons").get("ui"),
 	}
-	vim.api.nvim_command([[packadd nvim-window-picker]])
 
 	require("nvim-tree").setup({
 		create_in_closed_folder = false,
@@ -723,10 +733,9 @@ function config.nvim_tree()
 				window_picker = {
 					enable = true,
 					chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-					picker = require("window-picker").pick_window,
 					exclude = {
-						filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-						buftype = { "nofile", "terminal", "help" },
+						filetype = { "notify", "qf", "diff", "fugitive", "fugitiveblame" },
+						buftype = { "terminal", "help" },
 					},
 				},
 			},
@@ -807,6 +816,12 @@ function config.nvim_bufferline()
 					text_align = "center",
 					padding = 1,
 				},
+				{
+					filetype = "lspsagaoutline",
+					text = "Lspsaga Outline",
+					text_align = "center",
+					padding = 1,
+				},
 			},
 			diagnostics_indicator = function(count)
 				return "(" .. count .. ")"
@@ -818,8 +833,7 @@ function config.nvim_bufferline()
 	}
 
 	if vim.g.colors_name == "catppuccin" then
-		local cp = require("catppuccin.palettes").get_palette() -- Get the palette.
-		cp.none = "NONE" -- Special setting for complete transparent fg/bg.
+		local cp = require("modules.utils").get_palette() -- Get the palette.
 
 		local catppuccin_hl_overwrite = {
 			highlights = require("catppuccin.groups.integrations.bufferline").get({
@@ -924,7 +938,6 @@ function config.indent_blankline()
 			"log",
 			"fugitive",
 			"gitcommit",
-			"packer",
 			"vimwiki",
 			"markdown",
 			"json",
