@@ -1,3 +1,4 @@
-lua/modules/*/user/*
+lua/modules/plugins/custom.lua
+lua/modules/configs/custom
 ./lazy-lock.json
 */lazy-lock.json
