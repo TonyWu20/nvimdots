@@ -74,7 +74,7 @@ ui["edluffy/specs.nvim"] = {
 	config = require("ui.specs"),
 }
 ui["beauwilliams/focus.nvim"] = {
-	config = conf.focus,
+	config = require("ui.focus"),
 }
 
 return ui
