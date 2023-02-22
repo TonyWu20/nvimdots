@@ -1,5 +1,4 @@
 local global = require("core.global")
-local vim = vim
 
 -- Create cache dir and data dirs
 local createdir = function()
@@ -190,7 +189,7 @@ local load_core = function()
 	require("core.mapping")
 	require("keymap")
 	require("core.event")
-	require("core.lazy")
+	require("core.pack")
 
 	-- vim.api.nvim_command([[set background=light]])
 	vim.api.nvim_command([[colorscheme catppuccin]])
