@@ -41,15 +41,7 @@ local data = {
 		TypeParameter = "󰅲",
 		Undefined = "",
 		Unit = "",
-<<<<<<< HEAD
 		Value = "󰎠",
-||||||| parent of 80573d6 (chore(kind_text): cleanup (#648))
-		Undefinded = "",
-		Value = "",
-=======
-		Undefined = "",
-		Value = "",
->>>>>>> 80573d6 (chore(kind_text): cleanup (#648))
 		Variable = "",
 		-- ccls-specific icons
 		Macro = "",
