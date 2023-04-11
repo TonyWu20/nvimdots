@@ -181,7 +181,21 @@ return function()
 			{ name = "nvim_lua" },
 			{ name = "luasnip" },
 			{ name = "path" },
-			{ name = "treesitter" },
+			{
+				name = "treesitter",
+				---@diagnostic disable-next-line: unused-local
+				entry_filter = function(entry, _ctx)
+					local banned_kinds = {
+						"Error",
+						"Comment",
+					}
+					local kind = entry:get_completion_item().cmp.kind_text
+					if vim.tbl_contains(banned_kinds, kind) then
+						return false
+					end
+					return true
+				end,
+			},
 			{ name = "spell" },
 			{ name = "tmux" },
 			{ name = "orgmode" },
