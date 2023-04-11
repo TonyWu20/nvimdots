@@ -183,17 +183,13 @@ return function()
 			{ name = "path" },
 			{
 				name = "treesitter",
-				---@diagnostic disable-next-line: unused-local
-				entry_filter = function(entry, _ctx)
-					local banned_kinds = {
+				entry_filter = function(entry)
+					local ignore_list = {
 						"Error",
 						"Comment",
 					}
 					local kind = entry:get_completion_item().cmp.kind_text
-					if vim.tbl_contains(banned_kinds, kind) then
-						return false
-					end
-					return true
+					return not vim.tbl_contains(ignore_list, kind)
 				end,
 			},
 			{ name = "spell" },
