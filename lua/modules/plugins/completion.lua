@@ -12,14 +12,15 @@ completion["neovim/nvim-lspconfig"] = {
 			"glepnir/lspsaga.nvim",
 			config = require("completion.lspsaga"),
 		},
-		{
-			"jose-elias-alvarez/null-ls.nvim",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-				"jay-babu/mason-null-ls.nvim",
-			},
-			config = require("completion.null-ls"),
-		},
+	},
+}
+completion["jose-elias-alvarez/null-ls.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("completion.null-ls"),
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"jay-babu/mason-null-ls.nvim",
 	},
 }
 completion["hrsh7th/nvim-cmp"] = {
@@ -32,7 +33,6 @@ completion["hrsh7th/nvim-cmp"] = {
 			dependencies = { "rafamadriz/friendly-snippets" },
 			config = require("completion.luasnip"),
 		},
-		{ "onsails/lspkind.nvim" },
 		{ "lukas-reineke/cmp-under-comparator" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "hrsh7th/cmp-nvim-lsp" },

@@ -1,3 +1,3 @@
 return function()
-    require("focus").setup()
+	require("focus").setup()
 end
