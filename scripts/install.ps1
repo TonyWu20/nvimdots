@@ -332,6 +332,9 @@ function _main {
 	if (-not (check_in_path -WithName "nvim")) {
 		_abort -Msg "Required executable not found." -Type "NotInstalled" -ExtMsg @'
 You must install Neovim before installing this Nvim config. See:
+||||||| parent of a5c8d33 (feat(scripts): abort for nvim v0.7 and its antecedent)
+		_abort -Msg "Required executable not found." -Type "NotInstalled" -Info_msg @'
+You must install NeoVim before installing this Nvim config. See:
   https://github.com/neovim/neovim/wiki/Installing-Neovim
   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 [INFO] "nvim" is either not installed, missing from PATH, or not executable.
