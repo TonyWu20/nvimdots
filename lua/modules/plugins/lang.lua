@@ -27,4 +27,8 @@ lang["chrisbra/csv.vim"] = {
 	lazy = true,
 	ft = "csv",
 }
+lang["preservim/vim-pencil"] = {
+	lazy = true,
+	ft = "markdown",
+}
 return lang
