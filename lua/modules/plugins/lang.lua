@@ -30,6 +30,5 @@ lang["chrisbra/csv.vim"] = {
 lang["preservim/vim-pencil"] = {
 	lazy = true,
 	ft = "markdown",
-	config = require("lang.vim-pencil"),
 }
 return lang
