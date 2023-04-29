@@ -31,4 +31,7 @@ lang["preservim/vim-pencil"] = {
 	lazy = true,
 	ft = "markdown",
 }
+lang["frabjous/knap"] = {
+	ft = "tex",
+}
 return lang
