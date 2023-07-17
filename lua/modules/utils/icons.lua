@@ -22,6 +22,7 @@ local data = {
 		Function = "󰊕",
 		Implementation = "",
 		Interface = "",
+		Implementation = "",
 		Keyword = "󰌋",
 		List = "󰅪",
 		Loop = "󰑖",

@@ -1,5 +1,6 @@
 return function()
 	local notify = require("notify")
+	local colors = require("modules.utils").get_palette()
 	local icons = {
 		diagnostics = require("modules.utils.icons").get("diagnostics"),
 		ui = require("modules.utils.icons").get("ui"),
