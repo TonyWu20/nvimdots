@@ -110,6 +110,14 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 		{ "mfussenegger/nvim-treehopper" },
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
 		{
+			"hiphish/rainbow-delimiters.nvim",
+			config = require("editor.rainbow_delims"),
+		},
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			config = require("editor.ts-context"),
+		},
+		{
 			"windwp/nvim-ts-autotag",
 			config = require("editor.autotag"),
 		},
