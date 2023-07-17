@@ -136,4 +136,10 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 	},
 }
 
+editor["lervag/vimtex"] = {
+	lazy = true,
+	config = require("editor.vimtex"),
+	ft = "tex",
+}
+
 return editor
