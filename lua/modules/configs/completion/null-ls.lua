@@ -42,21 +42,31 @@ return function()
 		handlers = {},
 	})
 
-	-- NOTE: Users don't need to specify null-ls sources if using only default config.
-	-- "mason-null-ls" will auto-setup for users.
-	-- mason_null_ls.setup_handlers({
-	-- 	black = function()
-	-- 		null_reg(btnf.black.with({ extra_args = { "--fast" } }))
-	-- 	end,
-	-- 	markdownlint = function()
-	-- 		null_reg(btnf.markdownlint)
-	-- 		null_reg(btnd.markdownlint.with({ extra_args = { "--disable MD033" } }))
-	-- 	end,
-	-- 	-- example for changing diagnostics_format
-	-- 	-- shellcheck = function()
-	-- 	-- 	null_reg(btnd.shellcheck.with({ diagnostics_format = "#{m} [#{s} #{c}]" }))
-	-- 	-- end,
-	-- })
+	-- Setup usercmd to register/deregister available source(s)
+	local function _gen_completion()
+		local sources_cont = null_ls.get_source({
+			filetype = vim.api.nvim_get_option_value("filetype", { scope = "local" }),
+		})
+		local completion_items = {}
+		for _, server in pairs(sources_cont) do
+			table.insert(completion_items, server.name)
+		end
+		return completion_items
+	end
+	vim.api.nvim_create_user_command("NullLsToggle", function(opts)
+		if vim.tbl_contains(_gen_completion(), opts.args) then
+			null_ls.toggle({ name = opts.args })
+		else
+			vim.notify(
+				string.format("[Null-ls] Unable to find any registered source named [%s].", opts.args),
+				vim.log.levels.ERROR,
+				{ title = "Null-ls Internal Error" }
+			)
+		end
+	end, {
+		nargs = 1,
+		complete = _gen_completion,
+	})
 
 	require("completion.formatting").configure_format_on_save()
 end
