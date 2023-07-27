@@ -61,7 +61,7 @@ completion["hrsh7th/nvim-cmp"] = {
 		{ "kdheepak/cmp-latex-symbols" },
 		{ "TonyWu20/cmp-pandoc-references" },
 		{ "ray-x/cmp-treesitter", commit = "c8e3a74" },
-		{ "jc-doyle/cmp-pandoc-references" },
+		{ "TonyWu20/cmp-pandoc-references" },
 		-- { "tzachar/cmp-tabnine", build = "./install.sh", config = require("completion.tabnine") },
 		-- {
 		-- 	"jcdickinson/codeium.nvim",
