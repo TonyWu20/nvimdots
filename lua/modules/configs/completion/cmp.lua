@@ -86,6 +86,7 @@ return function()
 					treesitter = "[TS]",
 					luasnip = "[SNIP]",
 					spell = "[SPELL]",
+					pandoc_references = "[PANDOC]",
 				}, {
 					__index = function()
 						return "[BTN]" -- builtin/unknown source names
@@ -153,6 +154,7 @@ return function()
 			{ name = "buffer" },
 			{ name = "latex_symbols" },
 			{ name = "copilot" },
+			{ name = "pandoc_references" },
 			-- { name = "codeium" },
 			-- { name = "cmp_tabnine" },
 		},
