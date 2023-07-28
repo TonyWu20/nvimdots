@@ -122,5 +122,8 @@ editor["lervag/vimtex"] = {
 	config = require("editor.vimtex"),
 	ft = "tex",
 }
+-- editor["andrewferrier/wrapping.nvim"] = {
+-- 	config = require("editor.wrapping"),
+-- }
 
 return editor
