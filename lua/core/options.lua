@@ -97,7 +97,7 @@ local function load_options()
 		wildignorecase = true,
 		-- Do NOT adjust the following option (winblend) if you're using transparent background
 		winblend = 0,
-		winminwidth = 1,
+		winminwidth = 5,
 		winwidth = 30,
 		wrap = false,
 		wrapscan = true,
