@@ -7,6 +7,17 @@ return function()
 		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	}
 	-- Setup lsps that are not supported by `mason.nvim` but supported by `nvim-lspconfig` here.
+	local words = {}
+	for word in io.open(vim.fn.stdpath("config") .. "/spell/en.utf-8.add", "r"):lines() do
+		table.insert(words, word)
+	end
+	nvim_lsp.ltex.setup({
+		ltex = {
+			dictionary = {
+				["en-US"] = words,
+			},
+		},
+	})
 	if vim.fn.executable("dart") == 1 then
 		local ok, _opts = pcall(require, "user.configs.lsp-servers.dartls")
 		if not ok then
