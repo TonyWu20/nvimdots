@@ -1,5 +1,7 @@
 return function()
-	require("wrapping").setup({
-		softener = { latex = 0.8 },
+	require("modules.utils").load_plugin("wrapping", {
+		softener = {
+			latex = 1.3,
+		},
 	})
 end
