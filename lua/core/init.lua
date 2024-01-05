@@ -228,6 +228,7 @@ local load_core = function()
 	vim.api.nvim_command("set background=" .. background)
 	vim.api.nvim_command("colorscheme " .. colorscheme)
 	vim.api.nvim_command("set modelines=" .. 0)
+	vim.api.nvim_command("hi SpellBad cterm=underline guifg=red")
 end
 
 load_core()

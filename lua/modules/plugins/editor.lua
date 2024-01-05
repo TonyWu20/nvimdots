@@ -128,12 +128,15 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 }
 
 editor["lervag/vimtex"] = {
-	lazy = true,
+	lazy = false,
 	config = require("editor.vimtex"),
 	ft = "tex",
 }
--- editor["andrewferrier/wrapping.nvim"] = {
--- 	config = require("editor.wrapping"),
--- }
+editor["andrewferrier/wrapping.nvim"] = {
+	config = require("editor.wrapping"),
+}
 
+editor["folke/zen-mode.nvim"] = {
+	config = require("editor.zen-mode"),
+}
 return editor
