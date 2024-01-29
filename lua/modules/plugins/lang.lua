@@ -43,4 +43,11 @@ lang["preservim/vim-pencil"] = {
 lang["frabjous/knap"] = {
 	ft = "tex",
 }
+lang["chomosuke/typst-preview.nvim"] = {
+	ft = "typst",
+	version = "0.1.*",
+	build = function()
+		require("typst-preview").update()
+	end,
+}
 return lang
