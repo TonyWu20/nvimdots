@@ -50,4 +50,8 @@ lang["chomosuke/typst-preview.nvim"] = {
 		require("typst-preview").update()
 	end,
 }
+lang["kaarmu/typst.vim"] = {
+	ft = "typst",
+	lazy = false,
+}
 return lang

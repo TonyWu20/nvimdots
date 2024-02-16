@@ -12,9 +12,11 @@ return function()
 		table.insert(words, word)
 	end
 	nvim_lsp.ltex.setup({
-		ltex = {
-			dictionary = {
-				["en-US"] = words,
+		settings = {
+			ltex = {
+				dictionary = {
+					["en-US"] = words,
+				},
 			},
 		},
 	})
