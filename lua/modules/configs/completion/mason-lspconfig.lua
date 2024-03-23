@@ -1,29 +1,38 @@
 local M = {}
 
+local severity_map = {
+	["Error"] = vim.diagnostic.severity.ERROR,
+	["Warning"] = vim.diagnostic.severity.WARN,
+	["Information"] = vim.diagnostic.severity.INFO,
+	["Hint"] = vim.diagnostic.severity.HINT,
+}
+
 M.setup = function()
-	local lsp_deps = require("core.settings").lsp_deps
-	local mason_registry = require("mason-registry")
+	local diagnostics_virtual_text = require("core.settings").diagnostics_virtual_text
+	local diagnostics_level = require("core.settings").diagnostics_level
+
+	local nvim_lsp = require("lspconfig")
 	local mason_lspconfig = require("mason-lspconfig")
+	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	require("modules.utils").load_plugin("mason-lspconfig", {
-		ensure_installed = lsp_deps,
-		-- Skip auto enable because we are loading language servers lazily
-		automatic_enable = false,
+		ensure_installed = require("core.settings").lsp_deps,
 	})
 
-	vim.diagnostic.config({
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 		signs = true,
 		underline = true,
-		virtual_text = false,
+		virtual_text = diagnostics_virtual_text and {
+			severity = {
+				min = severity_map[diagnostics_level],
+			},
+		} or false,
+		-- set update_in_insert to false bacause it was enabled by lspsaga
 		update_in_insert = false,
 	})
 
 	local opts = {
-		capabilities = vim.tbl_deep_extend(
-			"force",
-			vim.lsp.protocol.make_client_capabilities(),
-			require("cmp_nvim_lsp").default_capabilities()
-		),
+		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	}
 	---A handler to setup all servers defined under `completion/servers/*.lua`
 	---@param lsp_name string
@@ -46,32 +55,21 @@ please REMOVE your LSP configuration (rust_analyzer.lua) from the `servers` dire
 		end
 
 		local ok, custom_handler = pcall(require, "user.configs.lsp-servers." .. lsp_name)
-		local default_ok, default_handler = pcall(require, "completion.servers." .. lsp_name)
 		-- Use preset if there is no user definition
 		if not ok then
-			ok, custom_handler = default_ok, default_handler
+			ok, custom_handler = pcall(require, "completion.servers." .. lsp_name)
 		end
-
 		if not ok then
 			-- Default to use factory config for server(s) that doesn't include a spec
-			require("modules.utils").register_server(lsp_name, opts)
+			nvim_lsp[lsp_name].setup(opts)
+			return
 		elseif type(custom_handler) == "function" then
-			-- Case where language server requires its own setup
-			-- Be sure to call `vim.lsp.config()` within the setup function.
-			-- Refer to |vim.lsp.config()| for documentation.
-			-- For an example, see `clangd.lua`.
+			--- Case where language server requires its own setup
+			--- Make sure to call require("lspconfig")[lsp_name].setup() in the function
+			--- See `clangd.lua` for example.
 			custom_handler(opts)
-			vim.lsp.enable(lsp_name)
 		elseif type(custom_handler) == "table" then
-			require("modules.utils").register_server(
-				lsp_name,
-				vim.tbl_deep_extend(
-					"force",
-					opts,
-					type(default_handler) == "table" and default_handler or {},
-					custom_handler
-				)
-			)
+			nvim_lsp[lsp_name].setup(vim.tbl_deep_extend("force", opts, custom_handler))
 		else
 			vim.notify(
 				string.format(
@@ -85,37 +83,7 @@ please REMOVE your LSP configuration (rust_analyzer.lua) from the `servers` dire
 		end
 	end
 
-	---A simplified mimic of <mason-lspconfig 1.x>'s `setup_handlers` callback.
-	---Invoked for each Mason package (name or `Package` object) to configure its language server.
-	---@param pkg string|{name: string} Either the package name (string) or a Package object
-	local function setup_lsp_for_package(pkg)
-		-- First try to grab the builtin mappings
-		local mappings = mason_lspconfig.get_mappings().package_to_lspconfig
-		-- If empty or nil, build it by hand
-		if not mappings or vim.tbl_isempty(mappings) then
-			mappings = {}
-			for _, spec in ipairs(mason_registry.get_all_package_specs()) do
-				local lspconfig = vim.tbl_get(spec, "neovim", "lspconfig")
-				if lspconfig then
-					mappings[spec.name] = lspconfig
-				end
-			end
-		end
-
-		-- Figure out the package name and lookup
-		local name = type(pkg) == "string" and pkg or pkg.name
-		local srv = mappings[name]
-		if not srv then
-			return
-		end
-
-		-- Invoke the handler
-		mason_lsp_handler(srv)
-	end
-
-	for _, pkg in ipairs(mason_registry.get_installed_package_names()) do
-		setup_lsp_for_package(pkg)
-	end
+	mason_lspconfig.setup_handlers({ mason_lsp_handler })
 end
 
 return M
