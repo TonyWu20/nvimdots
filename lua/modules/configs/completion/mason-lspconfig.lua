@@ -1,5 +1,12 @@
 local M = {}
 
+local severity_map = {
+	["Error"] = vim.diagnostic.severity.ERROR,
+	["Warning"] = vim.diagnostic.severity.WARN,
+	["Information"] = vim.diagnostic.severity.INFO,
+	["Hint"] = vim.diagnostic.severity.HINT,
+}
+
 M.setup = function()
 	local diagnostics_virtual_text = require("core.settings").diagnostics_virtual_text
 	local diagnostics_level = require("core.settings").diagnostics_level
