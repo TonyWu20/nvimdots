@@ -6,6 +6,11 @@ return function()
 			configuration = false,
 			autoload_configurations = false,
 		},
+		server = {
+			default_settings = {
+				["rust-analyzer"] = {},
+			},
+		},
 	}
 
 	require("modules.utils").load_plugin("rustaceanvim", nil, true)
