@@ -65,7 +65,6 @@ return function(defaults)
 	vim.lsp.config("clangd", {
 		capabilities = vim.tbl_deep_extend("keep", { offsetEncoding = { "utf-16", "utf-8" } }, defaults.capabilities),
 		single_file_support = true,
-		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 		cmd = {
 			"clangd",
 			"-j=9",
