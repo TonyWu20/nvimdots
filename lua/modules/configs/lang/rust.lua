@@ -8,7 +8,16 @@ return function()
 		},
 		server = {
 			default_settings = {
-				["rust-analyzer"] = {},
+				["rust-analyzer"] = {
+					checkOnSave = {
+						allFeatures = true,
+						command = "clippy",
+						extraArgs = {
+							"--",
+							"--no-deps",
+						},
+					},
+				},
 			},
 		},
 	}
