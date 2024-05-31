@@ -21,6 +21,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if not _G._debugging then
 			mapping.lsp(event.buf)
 		end
+		vim.lsp.inlay_hint.enable(true)
 	end,
 })
 
