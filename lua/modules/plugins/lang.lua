@@ -35,9 +35,11 @@ lang["preservim/vim-pencil"] = {
 	ft = "markdown",
 }
 lang["frabjous/knap"] = {
+	lazy = true,
 	ft = "tex",
 }
 lang["chomosuke/typst-preview.nvim"] = {
+	lazy = true,
 	ft = "typst",
 	version = "0.1.*",
 	build = function()
@@ -46,6 +48,6 @@ lang["chomosuke/typst-preview.nvim"] = {
 }
 lang["kaarmu/typst.vim"] = {
 	ft = "typst",
-	lazy = false,
+	lazy = true,
 }
 return lang
