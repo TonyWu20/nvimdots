@@ -136,12 +136,23 @@ You're recommended to install PowerShell for better experience.]],
 
 		local basecmd = "-NoLogo -MTA -ExecutionPolicy RemoteSigned"
 		local ctrlcmd = "-Command [console]::InputEncoding = [console]::OutputEncoding = [System.Text.Encoding]::UTF8"
-		vim.api.nvim_set_option_value("shell", vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell", {})
-		vim.api.nvim_set_option_value("shellcmdflag", string.format("%s %s;", basecmd, ctrlcmd), {})
-		vim.api.nvim_set_option_value("shellredir", "-RedirectStandardOutput %s -NoNewWindow -Wait", {})
-		vim.api.nvim_set_option_value("shellpipe", "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode", {})
-		vim.api.nvim_set_option_value("shellquote", nil, {})
-		vim.api.nvim_set_option_value("shellxquote", nil, {})
+		local set_opts = vim.api.nvim_set_option_value
+		set_opts("shell", vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell", {})
+		set_opts("shellcmdflag", string.format("%s %s;", basecmd, ctrlcmd), {})
+		set_opts("shellredir", "-RedirectStandardOutput %s -NoNewWindow -Wait", {})
+		set_opts("shellpipe", "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode", {})
+		set_opts("shellquote", "", {})
+		set_opts("shellxquote", "", {})
+	end
+end
+
+local _v0_10_workarounds = function()
+	local ok, watchfile = pcall(require, "vim.lsp._watchfiles")
+	if ok then
+		-- Disable lsp watcher
+		watchfile._watchfunc = function()
+			return function() end
+		end
 	end
 end
 
@@ -154,6 +165,7 @@ local load_core = function()
 	neovide_config()
 	clipboard_config()
 	shell_config()
+	_v0_10_workarounds()
 
 	require("core.options")
 	require("core.mapping")
