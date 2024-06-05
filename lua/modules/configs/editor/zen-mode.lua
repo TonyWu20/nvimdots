@@ -3,11 +3,11 @@ return function()
 		window = {
 			backdrop = 0.95,
 			width = 85,
-			height = 1,
+			height = 0.8,
 			options = {
 				list = false,
-				foldcolumn = "0",
-				signcolumn = "no",
+				-- foldcolumn = "0",
+				-- signcolumn = "no",
 				cursorcolumn = false,
 				cursorline = false,
 			},
