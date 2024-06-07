@@ -101,16 +101,6 @@ You're recommended to install PowerShell for better experience.]],
 	end
 end
 
-local _v0_10_workarounds = function()
-	local ok, watchfile = pcall(require, "vim.lsp._watchfiles")
-	if ok then
-		-- Disable lsp watcher
-		watchfile._watchfunc = function()
-			return function() end
-		end
-	end
-end
-
 local load_core = function()
 	createdir()
 	leader_map()
@@ -119,7 +109,6 @@ local load_core = function()
 	neovide_config()
 	clipboard_config()
 	shell_config()
-	_v0_10_workarounds()
 
 	require("core.options")
 	require("core.event")
