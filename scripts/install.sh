@@ -41,6 +41,8 @@ fi
 tty_mkbold() { tty_escape "1;$1"; }
 tty_underline="$(tty_escape "4;39")"
 tty_yellow="$(tty_escape "0;33")"
+tty_magenta="$(tty_mkbold 35)"
+tty_green="$(tty_mkbold 32)"
 tty_blue="$(tty_mkbold 34)"
 tty_red="$(tty_mkbold 31)"
 tty_bold="$(tty_mkbold 39)"
