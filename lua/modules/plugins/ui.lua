@@ -67,7 +67,7 @@ ui["dstein64/nvim-scrollview"] = {
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("ui.scrollview"),
 }
-ui["beauwilliams/focus.nvim"] = {
+ui["nvim-focus/focus.nvim"] = {
 	config = require("ui.focus"),
 }
 

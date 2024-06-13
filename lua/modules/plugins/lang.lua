@@ -11,7 +11,7 @@ lang["kevinhwang91/nvim-bqf"] = {
 lang["mrcjkb/rustaceanvim"] = {
 	lazy = true,
 	ft = "rust",
-	version = "^4",
+	version = "*",
 	init = require("lang.rust"),
 	dependencies = { "nvim-lua/plenary.nvim" },
 }
