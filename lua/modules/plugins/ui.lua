@@ -18,6 +18,7 @@ ui["Jint-lzxy/nvim"] = {
 }
 ui["lewis6991/gitsigns.nvim"] = {
 	lazy = true,
+	version = "0.9",
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("ui.gitsigns"),
 }
