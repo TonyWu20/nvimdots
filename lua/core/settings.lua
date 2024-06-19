@@ -6,7 +6,7 @@ settings["use_ssh"] = true
 
 -- Set it to false if you don't use copilot
 ---@type boolean
-settings["use_copilot"] = true
+settings["use_copilot"] = false
 
 -- Set it to false if you want to turn off LSP Inlay Hints
 ---@type boolean
@@ -110,7 +110,6 @@ settings["lsp_deps"] = {
 	"jsonls",
 	"lua_ls",
 	"pylsp",
-	"gopls",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here.
@@ -120,8 +119,6 @@ settings["lsp_deps"] = {
 ---@type string[]
 settings["null_ls_deps"] = {
 	"clang_format",
-	"gofumpt",
-	"goimports",
 	"prettier",
 	"shfmt",
 	"stylua",
@@ -134,8 +131,6 @@ settings["null_ls_deps"] = {
 ---@type string[]
 settings["dap_deps"] = {
 	"codelldb", -- C-Family
-	"delve", -- Go
-	"python", -- Python (debugpy)
 }
 
 -- Set the Treesitter parsers that will be installed during bootstrap here.
@@ -145,14 +140,9 @@ settings["dap_deps"] = {
 settings["treesitter_deps"] = {
 	"bash",
 	"c",
-	"cpp",
 	"css",
-	"go",
-	"gomod",
 	"html",
 	"javascript",
-	"json",
-	"jsonc",
 	"latex",
 	"lua",
 	"make",
@@ -162,7 +152,6 @@ settings["treesitter_deps"] = {
 	"rust",
 	"typescript",
 	"vimdoc",
-	"vue",
 	"yaml",
 }
 
