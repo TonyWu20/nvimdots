@@ -109,8 +109,6 @@ tool["nvim-telescope/telescope.nvim"] = {
 			config = require("tool.project"),
 		},
 		{ "nvim-telescope/telescope-bibtex.nvim" },
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		{ "nvim-telescope/telescope-bibtex.nvim" },
 		{
 			"aaronhallaert/advanced-git-search.nvim",
 			cmd = { "AdvancedGitSearch" },
