@@ -3,12 +3,12 @@ return function()
 		window = {
 			backdrop = 0.95,
 			width = 85,
-			height = 0.8,
+			height = 1.0,
 			options = {
 				list = false,
 				-- foldcolumn = "0",
 				-- signcolumn = "no",
-				cursorcolumn = false,
+				cursorcolumn = true,
 				cursorline = false,
 			},
 		},
