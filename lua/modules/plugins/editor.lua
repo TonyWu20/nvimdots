@@ -63,8 +63,13 @@ editor["smoka7/hop.nvim"] = {
 }
 editor["tzachar/local-highlight.nvim"] = {
 	lazy = true,
-	event = { "CursorHold", "CursorHoldI" },
+	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("editor.local-highlight"),
+}
+editor["brenoprata10/nvim-highlight-colors"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("editor.highlight-colors"),
 }
 editor["romainl/vim-cool"] = {
 	lazy = true,
@@ -95,7 +100,7 @@ editor["mrjones2014/smart-splits.nvim"] = {
 editor["nvim-treesitter/nvim-treesitter"] = {
 	lazy = true,
 	build = function()
-		if #vim.api.nvim_list_uis() ~= 0 then
+		if #vim.api.nvim_list_uis() > 0 then
 			vim.api.nvim_command([[TSUpdate]])
 		end
 	end,
@@ -108,10 +113,6 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 		{
 			"windwp/nvim-ts-autotag",
 			config = require("editor.autotag"),
-		},
-		{
-			"NvChad/nvim-colorizer.lua",
-			config = require("editor.colorizer"),
 		},
 		{
 			"hiphish/rainbow-delimiters.nvim",
@@ -139,5 +140,15 @@ editor["andrewferrier/wrapping.nvim"] = {
 
 editor["folke/zen-mode.nvim"] = {
 	config = require("editor.zen-mode"),
+}
+
+editor["kylechui/nvim-surround"] = {
+	version = "*", -- Use for stability; omit to use `main` branch for the latest features
+	event = "VeryLazy",
+	config = function()
+		require("nvim-surround").setup({
+			-- Configuration here, or leave empty to use defaults
+		})
+	end,
 }
 return editor

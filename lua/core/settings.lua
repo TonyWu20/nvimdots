@@ -6,15 +6,15 @@ settings["use_ssh"] = true
 
 -- Set it to false if you don't use copilot
 ---@type boolean
-settings["use_copilot"] = true
-
--- Set it to false if you want to turn off LSP Inlay Hints
----@type boolean
-settings["lsp_inlayhints"] = true
+settings["use_copilot"] = false
 
 -- Set it to false if there is no need to format on save.
 ---@type boolean
 settings["format_on_save"] = true
+
+-- Set format timeout here (in ms).
+---@type number
+settings["format_timeout"] = 1000
 
 -- Set it to false if the notification after formatting is annoying.
 ---@type boolean
@@ -36,6 +36,24 @@ settings["format_disabled_dirs"] = {
 	-- Example
 	"~/format_disabled_dir",
 }
+
+-- Filetypes in this list will skip lsp formatting if rhs is true.
+---@type table<string, boolean>
+settings["formatter_block_list"] = {
+	lua = false, -- example
+}
+
+-- Servers in this list will skip setting formatting capabilities if rhs is true.
+---@type table<string, boolean>
+settings["server_formatting_block_list"] = {
+	clangd = true,
+	lua_ls = true,
+	ts_ls = true,
+}
+
+-- Set it to false if you want to turn off LSP Inlay Hints
+---@type boolean
+settings["lsp_inlayhints"] = true
 
 -- Set it to false if diagnostics virtual text is annoying.
 -- If disabled, you may browse lsp diagnostics using trouble.nvim (press `gt` to toggle it).
@@ -85,20 +103,6 @@ settings["background"] = "dark"
 ---@type string
 settings["external_browser"] = "chrome-cli open"
 
--- Filetypes in this list will skip lsp formatting if rhs is true.
----@type table<string, boolean>
-settings["formatter_block_list"] = {
-	lua = false, -- example
-}
-
--- Servers in this list will skip setting formatting capabilities if rhs is true.
----@type table<string, boolean>
-settings["server_formatting_block_list"] = {
-	lua_ls = true,
-	tsserver = true,
-	clangd = true,
-}
-
 -- Set the language servers that will be installed during bootstrap here.
 -- check the below link for all the supported LSPs:
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
@@ -110,7 +114,6 @@ settings["lsp_deps"] = {
 	"jsonls",
 	"lua_ls",
 	"pylsp",
-	"gopls",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here.
@@ -120,8 +123,6 @@ settings["lsp_deps"] = {
 ---@type string[]
 settings["null_ls_deps"] = {
 	"clang_format",
-	"gofumpt",
-	"goimports",
 	"prettier",
 	"shfmt",
 	"stylua",
@@ -134,8 +135,6 @@ settings["null_ls_deps"] = {
 ---@type string[]
 settings["dap_deps"] = {
 	"codelldb", -- C-Family
-	"delve", -- Go
-	"python", -- Python (debugpy)
 }
 
 -- Set the Treesitter parsers that will be installed during bootstrap here.
@@ -145,14 +144,9 @@ settings["dap_deps"] = {
 settings["treesitter_deps"] = {
 	"bash",
 	"c",
-	"cpp",
 	"css",
-	"go",
-	"gomod",
 	"html",
 	"javascript",
-	"json",
-	"jsonc",
 	"latex",
 	"lua",
 	"make",
@@ -162,7 +156,6 @@ settings["treesitter_deps"] = {
 	"rust",
 	"typescript",
 	"vimdoc",
-	"vue",
 	"yaml",
 }
 
