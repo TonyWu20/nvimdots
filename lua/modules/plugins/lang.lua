@@ -11,7 +11,7 @@ lang["kevinhwang91/nvim-bqf"] = {
 lang["mrcjkb/rustaceanvim"] = {
 	lazy = true,
 	ft = "rust",
-	version = "^4",
+	version = "*",
 	init = require("lang.rust"),
 	dependencies = { "nvim-lua/plenary.nvim" },
 }
@@ -20,6 +20,15 @@ lang["Saecki/crates.nvim"] = {
 	event = "BufReadPost Cargo.toml",
 	config = require("lang.crates"),
 	dependencies = { "nvim-lua/plenary.nvim" },
+}
+lang["MeanderingProgrammer/render-markdown.nvim"] = {
+	lazy = true,
+	ft = "markdown",
+	config = require("lang.render-markdown"),
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"nvim-treesitter/nvim-treesitter",
+	},
 }
 lang["iamcco/markdown-preview.nvim"] = {
 	lazy = true,
