@@ -46,4 +46,28 @@ lang["chrisbra/csv.vim"] = {
 	lazy = true,
 	ft = "csv",
 }
+lang["preservim/vim-pencil"] = {
+	lazy = true,
+	ft = "markdown",
+}
+lang["frabjous/knap"] = {
+	lazy = true,
+	ft = "tex",
+}
+lang["chomosuke/typst-preview.nvim"] = {
+	lazy = true,
+	ft = "typst",
+	version = "0.1.*",
+	build = function()
+		require("typst-preview").update()
+	end,
+}
+lang["kaarmu/typst.vim"] = {
+	ft = "typst",
+	lazy = true,
+}
+lang["tommason14/lammps.vim"] = {
+	ft = "lammps",
+	lazy = true,
+}
 return lang
