@@ -32,7 +32,13 @@ local leader_map = function()
 end
 
 local gui_config = function()
-	vim.api.nvim_set_option_value("guifont", settings.gui_config.font_name .. ":h" .. settings.gui_config.font_size, {})
+	if next(settings.gui_config) then
+		vim.api.nvim_set_option_value(
+			"guifont",
+			settings.gui_config.font_name .. ":h" .. settings.gui_config.font_size,
+			{}
+		)
+	end
 end
 
 local neovide_config = function()
@@ -105,13 +111,24 @@ local load_core = function()
 	shell_config()
 
 	require("core.options")
-	require("core.mapping")
 	require("core.event")
 	require("core.pack")
 	require("keymap")
 
 	vim.api.nvim_set_option_value("background", settings.background, {})
 	vim.cmd.colorscheme(settings.colorscheme)
+	vim.filetype.add({
+		extension = {
+			lmp = "lammps",
+		},
+
+		pattern = {
+			-- These are lua matching patterns, not regex
+			[".*%.lmp"] = "lammps",
+			["in%..*"] = "lammps",
+			[".*%.in"] = "lammps",
+		},
+	})
 end
 
 load_core()
