@@ -112,6 +112,18 @@ local load_core = function()
 
 	vim.api.nvim_set_option_value("background", settings.background, {})
 	vim.cmd.colorscheme(settings.colorscheme)
+	vim.filetype.add({
+		extension = {
+			lmp = "lammps",
+		},
+
+		pattern = {
+			-- These are lua matching patterns, not regex
+			[".*%.lmp"] = "lammps",
+			["in%..*"] = "lammps",
+			[".*%.in"] = "lammps",
+		},
+	})
 end
 
 load_core()
