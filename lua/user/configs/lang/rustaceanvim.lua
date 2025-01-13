@@ -22,6 +22,12 @@ return function()
 					files = {
 						excludeDirs = { ".direnv" },
 					},
+					procMacro = {
+						enable = true,
+					},
+					completion = {
+						autoimport = true,
+					},
 				},
 			},
 		},
