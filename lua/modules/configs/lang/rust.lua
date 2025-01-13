@@ -17,6 +17,12 @@ return function()
 							"--no-deps",
 						},
 					},
+					procMacro = {
+						enable = true,
+					},
+					completion = {
+						autoimport = true,
+					},
 				},
 			},
 		},
