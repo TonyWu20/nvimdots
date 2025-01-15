@@ -59,4 +59,8 @@ lang["kaarmu/typst.vim"] = {
 	ft = "typst",
 	lazy = true,
 }
+lang["tommason14/lammps.vim"] = {
+	ft = "lammps",
+	lazy = true,
+}
 return lang
