@@ -9,6 +9,20 @@ return function()
 	-- Configure LSPs that are not supported by `mason.nvim` but are available in `nvim-lspconfig`.
 	-- First call |vim.lsp.config()|, then |vim.lsp.enable()| (or use `register_server`, see below)
 	-- to ensure the language server is properly configured and starts automatically.
+	local words = {}
+	for word in io.open(vim.fn.stdpath("config") .. "/spell/en.utf-8.add", "r"):lines() do
+		table.insert(words, word)
+	end
+	nvim_lsp.nushell.setup({})
+	nvim_lsp.ltex.setup({
+		settings = {
+			ltex = {
+				dictionary = {
+					["en-US"] = words,
+				},
+			},
+		},
+	})
 	if vim.fn.executable("dart") == 1 then
 		local ok, _opts = pcall(require, "user.configs.lsp-servers.dartls")
 		if not ok then
