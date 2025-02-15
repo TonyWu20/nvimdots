@@ -32,7 +32,7 @@ tool["nvim-tree/nvim-tree.lua"] = {
 }
 tool["ibhagwan/smartyank.nvim"] = {
 	lazy = true,
-	event = "BufReadPost",
+	event = { "BufReadPost", "BufEnter" },
 	config = require("tool.smartyank"),
 }
 tool["michaelb/sniprun"] = {
