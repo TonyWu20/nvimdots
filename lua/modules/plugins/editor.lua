@@ -60,6 +60,10 @@ editor["echasnovski/mini.cursorword"] = {
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("editor.cursorword"),
 }
+editor["echasnovski/mini.surround"] = {
+	version = false,
+	config = require("editor.surround"),
+}
 editor["smoka7/hop.nvim"] = {
 	lazy = true,
 	version = "*",

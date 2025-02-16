@@ -171,7 +171,10 @@ return function()
 				},
 			},
 			{ name = "latex_symbols" },
-			{ name = "copilot" },
+			{ name = "pandoc_references" },
+			-- { name = "copilot" },
+			-- { name = "codeium" },
+			-- { name = "cmp_tabnine" },
 		},
 		experimental = {
 			ghost_text = {
