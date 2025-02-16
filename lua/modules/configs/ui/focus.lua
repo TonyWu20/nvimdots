@@ -30,4 +30,5 @@ return function()
 			winhighlight = false, -- Auto highlighting for focussed/unfocussed windows
 		},
 	})
+
 end

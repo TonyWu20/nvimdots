@@ -21,11 +21,6 @@ completion["nvimdev/lspsaga.nvim"] = {
 	config = require("completion.lspsaga"),
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 }
-completion["stevearc/aerial.nvim"] = {
-	lazy = true,
-	event = "LspAttach",
-	config = require("completion.aerial"),
-}
 completion["DNLHC/glance.nvim"] = {
 	lazy = true,
 	event = "LspAttach",
@@ -66,6 +61,7 @@ completion["hrsh7th/nvim-cmp"] = {
 		{ "kdheepak/cmp-latex-symbols" },
 		{ "TonyWu20/cmp-pandoc-references" },
 		{ "ray-x/cmp-treesitter", commit = "c8e3a74" },
+		{ "jc-doyle/cmp-pandoc-references" },
 		-- { "tzachar/cmp-tabnine", build = "./install.sh", config = require("completion.tabnine") },
 		-- {
 		-- 	"jcdickinson/codeium.nvim",
