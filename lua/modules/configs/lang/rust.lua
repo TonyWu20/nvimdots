@@ -6,6 +6,26 @@ return function()
 			configuration = false,
 			autoload_configurations = false,
 		},
+		server = {
+			default_settings = {
+				["rust-analyzer"] = {
+					checkOnSave = {
+						allFeatures = true,
+						command = "clippy",
+						extraArgs = {
+							"--",
+							"--no-deps",
+						},
+					},
+					procMacro = {
+						enable = true,
+					},
+					completion = {
+						autoimport = true,
+					},
+				},
+			},
+		},
 	}
 
 	require("modules.utils").load_plugin("rustaceanvim", nil, true)

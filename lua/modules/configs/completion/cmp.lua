@@ -104,6 +104,7 @@ return function()
 					latex_symbols = "[LTEX]",
 					luasnip = "[SNIP]",
 					spell = "[SPELL]",
+					pandoc_references = "[PANDOC]",
 				}, {
 					__index = function()
 						return "[BTN]" -- builtin/unknown source names
@@ -198,10 +199,10 @@ return function()
 			-- { name = "codeium" },
 			-- { name = "cmp_tabnine" },
 		},
-		experimental = {
-			ghost_text = {
-				hl_group = "Whitespace",
-			},
-		},
+		-- experimental = {
+		-- 	ghost_text = {
+		-- 		hl_group = "Whitespace",
+		-- 	},
+		-- },
 	})
 end

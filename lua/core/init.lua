@@ -42,6 +42,7 @@ local gui_config = function()
 end
 
 local neovide_config = function()
+	vim.api.nvim_set_option_value("guifont", "Hack:h15", {})
 	for name, config in pairs(settings.neovide_config) do
 		vim.g["neovide_" .. name] = config
 	end
@@ -116,6 +117,18 @@ local load_core = function()
 
 	vim.api.nvim_set_option_value("background", settings.background, {})
 	vim.cmd.colorscheme(settings.colorscheme)
+	vim.filetype.add({
+		extension = {
+			lmp = "lammps",
+		},
+
+		pattern = {
+			-- These are lua matching patterns, not regex
+			[".*%.lmp"] = "lammps",
+			["in%..*"] = "lammps",
+			[".*%.in"] = "lammps",
+		},
+	})
 end
 
 load_core()
