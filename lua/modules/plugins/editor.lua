@@ -55,6 +55,10 @@ editor["echasnovski/mini.align"] = {
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("editor.align"),
 }
+editor["echasnovski/mini.surround"] = {
+	version = false,
+	config = require("editor.surround"),
+}
 editor["smoka7/hop.nvim"] = {
 	lazy = true,
 	version = "*",
