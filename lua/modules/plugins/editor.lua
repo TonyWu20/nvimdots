@@ -93,6 +93,13 @@ editor["MagicDuck/grug-far.nvim"] = {
 	cmd = "GrugFar",
 	config = require("editor.grug-far"),
 }
+editor["keaising/im-select.nvim"] = {
+	lazy = false,
+	opts = {
+		default_im_select = "com.apple.keylayout.ABC",
+		default_command = "im-select",
+	},
+}
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------
@@ -109,6 +116,14 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 		{ "andymass/vim-matchup" },
 		{ "mfussenegger/nvim-treehopper" },
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		{
+			"hiphish/rainbow-delimiters.nvim",
+			config = require("editor.rainbow_delims"),
+		},
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			config = require("editor.ts-context"),
+		},
 		{
 			"windwp/nvim-ts-autotag",
 			config = require("editor.autotag"),
@@ -139,15 +154,5 @@ editor["andrewferrier/wrapping.nvim"] = {
 
 editor["folke/zen-mode.nvim"] = {
 	config = require("editor.zen-mode"),
-}
-
-editor["kylechui/nvim-surround"] = {
-	version = "*", -- Use for stability; omit to use `main` branch for the latest features
-	event = "VeryLazy",
-	config = function()
-		require("nvim-surround").setup({
-			-- Configuration here, or leave empty to use defaults
-		})
-	end,
 }
 return editor

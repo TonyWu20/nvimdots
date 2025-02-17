@@ -73,5 +73,21 @@ return function()
 		complete = _gen_completion,
 	})
 
+	-- NOTE: Users don't need to specify null-ls sources if using only default config.
+	-- "mason-null-ls" will auto-setup for users.
+	-- mason_null_ls.setup_handlers({
+	-- 	black = function()
+	-- 		null_reg(btnf.black.with({ extra_args = { "--fast" } }))
+	-- 	end,
+	-- 	markdownlint = function()
+	-- 		null_reg(btnf.markdownlint)
+	-- 		null_reg(btnd.markdownlint.with({ extra_args = { "--disable MD033" } }))
+	-- 	end,
+	-- 	-- example for changing diagnostics_format
+	-- 	-- shellcheck = function()
+	-- 	-- 	null_reg(btnd.shellcheck.with({ diagnostics_format = "#{m} [#{s} #{c}]" }))
+	-- 	-- end,
+	-- })
+
 	require("completion.formatting").configure_format_on_save()
 end
