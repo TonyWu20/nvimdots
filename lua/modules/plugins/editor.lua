@@ -93,6 +93,13 @@ editor["MagicDuck/grug-far.nvim"] = {
 	cmd = "GrugFar",
 	config = require("editor.grug-far"),
 }
+editor["keaising/im-select.nvim"] = {
+	lazy = false,
+	opts = {
+		default_im_select = "com.apple.keylayout.ABC",
+		default_command = "im-select",
+	},
+}
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------

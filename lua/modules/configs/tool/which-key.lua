@@ -6,35 +6,6 @@ return function()
 		cmp = require("modules.utils.icons").get("cmp", true),
 	}
 
-	require("which-key").register({
-		["<leader>"] = {
-			b = {
-				name = icons.ui.Buffer .. " Buffer",
-			},
-			d = {
-				name = icons.ui.Bug .. " Debug",
-			},
-			f = {
-				name = icons.ui.Telescope .. " Fuzzy Find",
-			},
-			g = {
-				name = icons.git.Git .. "Git",
-			},
-			l = {
-				name = icons.misc.LspAvailable .. " Lsp",
-			},
-			n = {
-				name = icons.ui.FolderOpen .. " Nvim Tree",
-			},
-			p = {
-				name = icons.ui.Package .. " Package",
-			},
-			s = {
-				name = icons.cmp.tmux .. "Session",
-			},
-		},
-	})
-
 	require("modules.utils").load_plugin("which-key", {
 		preset = "classic",
 		delay = vim.o.timeoutlen,
