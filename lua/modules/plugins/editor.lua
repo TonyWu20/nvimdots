@@ -96,8 +96,8 @@ editor["MagicDuck/grug-far.nvim"] = {
 editor["keaising/im-select.nvim"] = {
 	lazy = false,
 	opts = {
-		default_im_select = "com.apple.keylayout.ABC",
-		default_command = "im-select",
+		default_im_select = "keyboard-us",
+		default_command = "fcitx5-remote",
 	},
 }
 ----------------------------------------------------------------------
