@@ -62,6 +62,11 @@ completion["hrsh7th/nvim-cmp"] = {
 		{ "TonyWu20/cmp-pandoc-references" },
 		{ "ray-x/cmp-treesitter", commit = "c8e3a74" },
 		{ "TonyWu20/cmp-pandoc-references" },
+		{
+			"liubianshi/cmp-lsp-rimels", -- 中文输入补全
+			keys = { { "<localleader>f", mode = "i" } },
+			config = require("completion.rimels"),
+		},
 		-- { "tzachar/cmp-tabnine", build = "./install.sh", config = require("completion.tabnine") },
 		-- {
 		-- 	"jcdickinson/codeium.nvim",
