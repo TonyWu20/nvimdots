@@ -116,6 +116,7 @@ editor["rainzm/flash-zh.nvim"] = {
 		},
 	},
 }
+editor["noearc/jieba.nvim"] = { dependencies = { "noearc/jieba-lua" }, opts = {} }
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------

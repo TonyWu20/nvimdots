@@ -4,7 +4,7 @@ return function()
 		cmd = vim.lsp.rpc.connect("127.0.0.1", 9257),
 		cmp_keymaps = {
 			disable = {
-				punctuation_upload_directly = true,
+				punctuation_upload_directly = false,
 			},
 		},
 	})
