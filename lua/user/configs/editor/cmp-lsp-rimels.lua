@@ -3,9 +3,11 @@ return function()
 	require("rimels").setup({
 		cmd = vim.lsp.rpc.connect("127.0.0.1", 9257),
 		cmp_keymaps = {
-			diable = {
+			disable = {
 				punctuation_upload_directly = false,
 			},
 		},
+		rime_user_dir = "~/.local/share/rime-ls",
+		shared_data_dir = "~/.local/share/rime-data/",
 	})
 end
