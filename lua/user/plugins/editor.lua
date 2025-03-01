@@ -116,6 +116,7 @@ editor["kealsing/im-select.nvim"] = {
 		default_command = "fcitx5-remote",
 	},
 }
+
 editor["rainzm/flash-zh.nvim"] = {
 	event = "VeryLazy",
 	dependencies = "folke/flash.nvim",
@@ -132,6 +133,7 @@ editor["rainzm/flash-zh.nvim"] = {
 		},
 	},
 }
+
 editor["noearc/jieba.nvim"] = { dependencies = { "noearc/jieba-lua" }, opts = {} }
 
 return editor
