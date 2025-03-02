@@ -11,6 +11,8 @@ return function()
 		},
 		rime_user_dir = "~/.local/share/rime-ls",
 		shared_data_dir = "~/.local/share/rime-data",
+
 		show_order_in_label = false,
+
 	})
 end
