@@ -9,7 +9,7 @@ compare.lsp_scores = function(entry1, entry2)
 	return (diff < 0)
 end
 local use_copilot = require("core.settings").use_copilot
-local comparators = use_copilot == true
+local new_comparators = use_copilot == true
 		and {
 			require("copilot_cmp.comparators").prioritize,
 			require("copilot_cmp.comparators").score,
@@ -45,6 +45,6 @@ local comparators = use_copilot == true
 
 return {
 	sorting = {
-		comparators = comparators,
+		comparators = new_comparators,
 	},
 }
