@@ -45,6 +45,7 @@ local new_comparators = use_copilot == true
 
 return {
 	sorting = {
+		priority_weight = 2,
 		comparators = new_comparators,
 	},
 }
