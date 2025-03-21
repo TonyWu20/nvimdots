@@ -9,14 +9,14 @@ return function()
 		server = {
 			default_settings = {
 				["rust-analyzer"] = {
-					checkOnSave = {
-						allFeatures = true,
-						command = "clippy",
-						extraArgs = {
-							"--",
-							"--no-deps",
-						},
-					},
+					-- checkOnSave = {
+					-- 	allFeatures = true,
+					-- 	command = "clippy",
+					-- 	extraArgs = {
+					-- 		"--",
+					-- 		"--no-deps",
+					-- 	},
+					-- },
 					procMacro = {
 						enable = true,
 					},
