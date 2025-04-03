@@ -19,9 +19,8 @@ editor["m4xshen/autoclose.nvim"] = {
 	event = "InsertEnter",
 	config = require("editor.autoclose"),
 }
-editor["LunarVim/bigfile.nvim"] = {
+editor["pteroctopus/faster.nvim"] = {
 	lazy = false,
-	config = require("editor.bigfile"),
 	cond = require("core.settings").load_big_files_faster,
 }
 editor["ojroques/nvim-bufdel"] = {
@@ -64,11 +63,6 @@ editor["smoka7/hop.nvim"] = {
 	version = "*",
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("editor.hop"),
-}
-editor["tzachar/local-highlight.nvim"] = {
-	lazy = true,
-	event = { "BufReadPost", "BufAdd", "BufNewFile" },
-	config = require("editor.local-highlight"),
 }
 editor["brenoprata10/nvim-highlight-colors"] = {
 	lazy = true,
@@ -113,16 +107,11 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 	event = "BufReadPre",
 	config = require("editor.treesitter"),
 	dependencies = {
-		{ "andymass/vim-matchup" },
 		{ "mfussenegger/nvim-treehopper" },
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
 		{
-			"hiphish/rainbow-delimiters.nvim",
-			config = require("editor.rainbow_delims"),
-		},
-		{
-			"nvim-treesitter/nvim-treesitter-context",
-			config = require("editor.ts-context"),
+			"andymass/vim-matchup",
+			init = require("editor.matchup"),
 		},
 		{
 			"windwp/nvim-ts-autotag",
