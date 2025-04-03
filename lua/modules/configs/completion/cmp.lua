@@ -104,6 +104,7 @@ return function()
 					latex_symbols = "[LTEX]",
 					luasnip = "[SNIP]",
 					spell = "[SPELL]",
+					pandoc_references = "[PANDOC]",
 				}, {
 					__index = function()
 						return "[BTN]" -- builtin/unknown source names
@@ -180,7 +181,17 @@ return function()
 			{ name = "nvim_lua" },
 			{ name = "luasnip" },
 			{ name = "path" },
-			{ name = "treesitter" },
+			{
+				name = "treesitter",
+				entry_filter = function(entry)
+					local ignore_list = {
+						"Error",
+						"Comment",
+					}
+					local kind = entry:get_completion_item().cmp.kind_text
+					return not vim.tbl_contains(ignore_list, kind)
+				end,
+			},
 			{ name = "spell" },
 			{ name = "tmux" },
 			{ name = "orgmode" },
@@ -193,14 +204,15 @@ return function()
 				},
 			},
 			{ name = "latex_symbols" },
-			{ name = "copilot" },
+			{ name = "pandoc_references" },
+			-- { name = "copilot" },
 			-- { name = "codeium" },
 			-- { name = "cmp_tabnine" },
 		},
-		experimental = {
-			ghost_text = {
-				hl_group = "Whitespace",
-			},
-		},
+		-- experimental = {
+		-- 	ghost_text = {
+		-- 		hl_group = "Whitespace",
+		-- 	},
+		-- },
 	})
 end

@@ -96,7 +96,7 @@ local function load_options()
 		wildignorecase = true,
 		-- Do NOT adjust the following option (winblend) if you're using transparent background
 		winblend = 0,
-		winminwidth = 10,
+		winminwidth = 5,
 		winwidth = 30,
 		wrap = false,
 		wrapscan = true,
@@ -123,6 +123,7 @@ local function load_options()
 	for name, value in pairs(require("modules.utils").extend_config(global_local, "user.options")) do
 		vim.api.nvim_set_option_value(name, value, {})
 	end
+	vim.g.c_syntax_for_h = true
 end
 
 -- Newtrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456

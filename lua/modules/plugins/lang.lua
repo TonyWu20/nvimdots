@@ -8,13 +8,6 @@ lang["kevinhwang91/nvim-bqf"] = {
 		{ "junegunn/fzf", build = ":call fzf#install()" },
 	},
 }
-lang["ray-x/go.nvim"] = {
-	lazy = true,
-	ft = { "go", "gomod", "gosum" },
-	build = ":GoInstallBinaries",
-	config = require("lang.go"),
-	dependencies = { "ray-x/guihua.lua" },
-}
 lang["mrcjkb/rustaceanvim"] = {
 	lazy = true,
 	ft = "rust",
@@ -45,5 +38,29 @@ lang["iamcco/markdown-preview.nvim"] = {
 lang["chrisbra/csv.vim"] = {
 	lazy = true,
 	ft = "csv",
+}
+lang["preservim/vim-pencil"] = {
+	lazy = true,
+	ft = "markdown",
+}
+lang["frabjous/knap"] = {
+	lazy = true,
+	ft = "tex",
+}
+lang["chomosuke/typst-preview.nvim"] = {
+	lazy = true,
+	ft = "typst",
+	version = "0.1.*",
+	build = function()
+		require("typst-preview").update()
+	end,
+}
+lang["kaarmu/typst.vim"] = {
+	ft = "typst",
+	lazy = true,
+}
+lang["tommason14/lammps.vim"] = {
+	ft = "lammps",
+	lazy = true,
 }
 return lang
