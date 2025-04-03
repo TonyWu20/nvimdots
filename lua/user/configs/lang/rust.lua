@@ -11,11 +11,7 @@ return function()
 				["rust-analyzer"] = {
 					checkOnSave = {
 						allFeatures = true,
-						command = "clippy",
-						extraArgs = {
-							"--",
-							"--no-deps",
-						},
+						command = "cargo check",
 					},
 					procMacro = {
 						enable = true,
