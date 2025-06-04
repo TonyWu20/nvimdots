@@ -55,10 +55,9 @@ settings["server_formatting_block_list"] = {
 ---@type boolean
 settings["lsp_inlayhints"] = true
 
--- Set it to false if diagnostics virtual text is annoying.
--- If disabled, you may browse lsp diagnostics using trouble.nvim (press `gt` to toggle it).
+-- Set it to false if diagnostics virtual lines is annoying.
 ---@type boolean
-settings["diagnostics_virtual_text"] = true
+settings["diagnostics_virtual_lines"] = false
 
 -- Set it to one of the values below if you want to change the visible severity level of lsp diagnostics.
 -- Priority: `Error` > `Warning` > `Information` > `Hint`.
@@ -221,5 +220,11 @@ settings["dashboard_image"] = {
 	[[⠿⠛⠛⠛⠛⠛⠛⠻⢿⣿⣿⣿⣿⣯⣟⠷⢷⣿⡿⠋⠀⠀⠀⠀⣵⡀⢠⡿⠋⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
 	[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⠂⠀⠀⠀⠀⠀⢀⣽⣿⣿⣿⣿⣿⣿⣿⣍⠛⠿⣿⣿⣿⣿⣿⣿]],
 }
+
+-- Set the search backend to use here.
+-- telescope is enough for most cases.
+-- fzf is more powerful for searching in huge repo but needs fzf binary installed.
+---@type "telescope"|"fzf"
+settings["search_backend"] = "telescope"
 
 return require("modules.utils").extend_config(settings, "user.settings")
