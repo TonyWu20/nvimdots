@@ -27,4 +27,6 @@ settings["dashboard_image"] = {
 	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
 }
 
+settings["format_timeout"] = 8000
+
 return settings
