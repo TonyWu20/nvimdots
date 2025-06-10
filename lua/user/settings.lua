@@ -31,4 +31,6 @@ settings["lsp_inlayhints"] = true
 
 settings["format_timeout"] = 8000
 
+settings["format_timeout"] = 8000
+
 return settings
