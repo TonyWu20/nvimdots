@@ -9,10 +9,8 @@ return function()
 		server = {
 			default_settings = {
 				["rust-analyzer"] = {
-					checkOnSave = {
-						allFeatures = true,
-						command = "cargo check",
-					},
+					checkOnSave = true,
+					check = { features = "all" },
 					procMacro = {
 						enable = true,
 					},
@@ -26,5 +24,4 @@ return function()
 			},
 		},
 	}
-
 end
