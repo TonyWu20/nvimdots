@@ -27,5 +27,4 @@ return function()
 		},
 	}
 
-	require("modules.utils").load_plugin("rustaceanvim", nil, true)
 end
