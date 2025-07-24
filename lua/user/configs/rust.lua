@@ -10,7 +10,7 @@ return function()
 			default_settings = {
 				["rust-analyzer"] = {
 					checkOnSave = true,
-					check = { features = "all" },
+					check = { features = "all", command = "clippy" },
 					procMacro = {
 						enable = true,
 					},
