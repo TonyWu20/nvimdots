@@ -8,6 +8,7 @@ return function()
 		},
 		server = {
 			default_settings = {
+<<<<<<< HEAD:lua/user/configs/rust.lua
 				["rust-analyzer"] = {
 					checkOnSave = true,
 					check = { features = "all", command = "clippy" },
