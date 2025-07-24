@@ -8,7 +8,7 @@ return function()
 		},
 		server = {
 			default_settings = {
-				["rust_analyzer"] = {
+				["rust-analyzer"] = {
 					checkOnSave = {
 						allFeatures = true,
 						command = "cargo check",
@@ -18,6 +18,9 @@ return function()
 					},
 					completion = {
 						autoimport = true,
+					},
+					files = {
+						excludeDirs = { ".direnv" },
 					},
 				},
 			},
