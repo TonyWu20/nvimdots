@@ -33,6 +33,8 @@ settings["lsp_deps"] = function(default)
 		"jsonls",
 		"lua_ls",
 		"pylsp",
+		"fish-lsp",
+		"tinymist",
 	}
 end
 
