@@ -8,7 +8,7 @@ return function()
 		},
 		server = {
 			default_settings = {
-				["rust-analyzer"] = {
+				["rust_analyzer"] = {
 					checkOnSave = {
 						allFeatures = true,
 						command = "cargo check",
