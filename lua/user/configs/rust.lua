@@ -9,9 +9,10 @@ return function()
 		server = {
 			default_settings = {
 				["rust-analyzer"] = {
-					checkOnSave = {
+					checkOnSave = true,
+					check = {
 						allFeatures = true,
-						command = "cargo check",
+						command = "cargo clippy",
 					},
 					procMacro = {
 						enable = true,
