@@ -10,19 +10,18 @@ return function()
 			default_settings = {
 				["rust-analyzer"] = {
 					checkOnSave = true,
-					check = {
-						allFeatures = true,
-						command = "cargo clippy",
-					},
+					check = { features = "all", command = "clippy" },
 					procMacro = {
 						enable = true,
 					},
 					completion = {
 						autoimport = true,
 					},
+					files = {
+						excludeDirs = { ".direnv" },
+					},
 				},
 			},
 		},
 	}
-
 end
