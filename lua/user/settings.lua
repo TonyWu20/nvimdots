@@ -4,7 +4,7 @@ local settings = {}
 -- Examples
 settings["use_ssh"] = false
 
-settings["colorscheme"] = "catppuccin-frappe"
+settings["colorscheme"] = "catppuccin-macchiato"
 
 settings["use_copilot"] = false
 
