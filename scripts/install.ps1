@@ -21,7 +21,7 @@ $installer_pkg_matrix = @{ "NodeJS" = "npm"; "Python" = "pip"; "Ruby" = "gem" }
 $env:XDG_CONFIG_HOME ??= $env:LOCALAPPDATA
 $env:CCPACK_MGR ??= 'unknown'
 $env:CCLONE_ATTR ??= 'undef'
-$env:CCLONE_BRANCH ??= '0.11'
+$env:CCLONE_BRANCH ??= 'main'
 $env:CCLONE_BRANCH_LEGACY ??= '0.10'
 $env:CCDEST_DIR ??= "$env:XDG_CONFIG_HOME\nvim"
 $env:CCBACKUP_DIR = "$env:CCDEST_DIR" + "_backup-" + (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmss")
@@ -392,7 +392,7 @@ You must install Git before installing this Nvim config. See:
 	info -Msg 'Please make sure you have a Rust Toolchain installed via `rustup`! Otherwise, unexpected things may'
 	info_ext -Msg 'happen. See: https://www.rust-lang.org/tools/install.¯¯¯¯¯¯¯¯¯¯¯¯'
 	info_ext -Msg '             ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯'
-	info -Msg 'If lazy.nvim failed to fetch any plugin(s), maunally execute `:Lazy sync` until everything is up-to-date.'
+	info -Msg 'If lazy.nvim failed to fetch any plugin(s), manually execute `:Lazy sync` until everything is up-to-date.'
 	Write-Host @'
 
 Thank you for using this set of configuration!
