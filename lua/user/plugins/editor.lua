@@ -30,6 +30,12 @@ editor["rainzm/flash-zh.nvim"] = {
 	},
 }
 
-editor["noearc/jieba.nvim"] = { dependencies = { "noearc/jieba-lua" }, opts = {} }
+editor["TonyWu20/jieba.vim"] = {
+	build = "./build.sh",
+	init = function()
+		vim.g.jieba_vim_lazy = 1
+		vim.g.jieba_vim_keymap = 1
+	end,
+}
 
 return editor
