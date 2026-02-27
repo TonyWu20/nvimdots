@@ -30,8 +30,7 @@ editor["rainzm/flash-zh.nvim"] = {
 	},
 }
 
-editor["kkew3/jieba.vim"] = {
-	tag = "v1.0.5",
+editor["TonyWu20/jieba.vim"] = {
 	build = "./build.sh",
 	init = function()
 		vim.g.jieba_vim_lazy = 1
