@@ -79,7 +79,7 @@ return function()
 			},
 		},
 		sorting = {
-			priority_weight = 2,
+			priority_weight = 1,
 			comparators = comparators,
 		},
 		formatting = {
