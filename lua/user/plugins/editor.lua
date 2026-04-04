@@ -30,8 +30,9 @@ editor["rainzm/flash-zh.nvim"] = {
 	},
 }
 
-editor["TonyWu20/jieba.vim"] = {
-	build = "./build.sh",
+editor["kkew3/jieba.vim"] = {
+	tag = "v2.1.0",
+	build = ":call jieba_vim#install()",
 	init = function()
 		vim.g.jieba_vim_lazy = 1
 		vim.g.jieba_vim_keymap = 1
@@ -60,6 +61,10 @@ editor["coder/claudecode.nvim"] = {
 		{ "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
 		{ "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
 	},
+}
+
+editor["nvim-treesitter/nvim-treesitter"] = {
+	branch = "master",
 }
 
 return editor
