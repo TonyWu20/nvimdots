@@ -64,7 +64,43 @@ editor["coder/claudecode.nvim"] = {
 }
 
 editor["nvim-treesitter/nvim-treesitter"] = {
+	lazy = false,
 	branch = "master",
+	build = function()
+		if #vim.api.nvim_list_uis() > 0 then
+			vim.api.nvim_command([[TSUpdate]])
+		end
+	end,
+	config = require("editor.treesitter"),
+	dependencies = {
+		{ "mfussenegger/nvim-treehopper" },
+		{
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			branch = "main",
+			config = require("editor.ts-textobjects"),
+		},
+		{
+			"andymass/vim-matchup",
+			init = require("editor.matchup"),
+		},
+		{
+			"windwp/nvim-ts-autotag",
+			config = require("editor.autotag"),
+		},
+		{
+			"hiphish/rainbow-delimiters.nvim",
+			submodules = false,
+			config = require("editor.rainbow_delims"),
+		},
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			config = require("editor.ts-context"),
+		},
+		{
+			"JoosepAlviste/nvim-ts-context-commentstring",
+			config = require("editor.ts-context-commentstring"),
+		},
+	},
 }
 
 return editor
