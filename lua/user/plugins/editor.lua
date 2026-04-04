@@ -65,7 +65,8 @@ editor["coder/claudecode.nvim"] = {
 
 editor["nvim-treesitter/nvim-treesitter"] = {
 	lazy = false,
-	branch = "master",
+	branch = "main",
+	commit = "90cd658",
 	build = function()
 		if #vim.api.nvim_list_uis() > 0 then
 			vim.api.nvim_command([[TSUpdate]])
