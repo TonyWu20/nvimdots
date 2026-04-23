@@ -5,7 +5,7 @@ editor["echasnovski/mini.surround"] = {
 	config = require("configs.editor.surround"),
 }
 
-editor["kealsing/im-select.nvim"] = {
+editor["keaising/im-select.nvim"] = {
 	lazy = false,
 	opts = {
 		default_im_select = "keyboard-us",
