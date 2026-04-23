@@ -2,7 +2,7 @@
 local settings = {}
 
 -- Examples
-settings["use_ssh"] = true
+settings["use_ssh"] = false
 
 settings["colorscheme"] = "catppuccin-macchiato"
 
