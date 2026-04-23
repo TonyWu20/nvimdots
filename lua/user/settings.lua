@@ -29,6 +29,25 @@ settings["use_copilot"] = false
 
 settings["format_timeout"] = 8000
 
-settings["format_timeout"] = 8000
+settings["lsp_deps"] = function(default)
+	return {
+		"bashls",
+		"jsonls",
+		"lua_ls",
+		"pylsp",
+		"fish_lsp",
+		"tinymist",
+	}
+end
+
+settings["null_ls_deps"] = function(default)
+	return {
+		"clang_format",
+		"prettier",
+		"shfmt",
+		"stylua",
+		"vint",
+	}
+end
 
 return settings
