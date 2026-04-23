@@ -2,13 +2,11 @@
 local settings = {}
 
 -- Examples
-settings["use_ssh"] = false
+settings["use_ssh"] = true
 
 settings["colorscheme"] = "catppuccin-macchiato"
 
 settings["use_copilot"] = false
-
-settings["lsp_inlayhints"] = true
 
 -- settings["dashboard_image"] = {
 -- 	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
