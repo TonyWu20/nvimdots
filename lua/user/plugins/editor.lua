@@ -30,8 +30,9 @@ editor["rainzm/flash-zh.nvim"] = {
 	},
 }
 
-editor["TonyWu20/jieba.vim"] = {
-	build = "./build.sh",
+editor["kkew3/jieba.vim"] = {
+	tag = "v2.0.0",
+	build = ":call jieba_vim#install()",
 	init = function()
 		vim.g.jieba_vim_lazy = 1
 		vim.g.jieba_vim_keymap = 1
