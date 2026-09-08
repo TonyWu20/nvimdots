@@ -76,36 +76,6 @@ M.toggle_lazygit = function()
 	end
 end
 
-M.select_chat_model = function()
-	local actions = require("telescope.actions")
-	local action_state = require("telescope.actions.state")
-	local finder = require("telescope.finders")
-	local pickers = require("telescope.pickers")
-	local type = require("telescope.themes").get_dropdown()
-	local conf = require("telescope.config").values
-	local ai = require("modules.utils.ai")
-	local models = ai.get_codecompanion_models()
-	local current_model = vim.g.current_chat_model or ai.get_codecompanion_default_model()
-
-	pickers
-		.new(type, {
-			prompt_title = "(CodeCompanion) Select Model",
-			finder = finder.new_table({ results = models }),
-			sorter = conf.generic_sorter(type),
-			attach_mappings = function(bufnr)
-				actions.select_default:replace(function()
-					actions.close(bufnr)
-					current_model = action_state.get_selected_entry()[1]
-					vim.g.current_chat_model = current_model
-					vim.notify("Model selected: " .. current_model, vim.log.levels.INFO, { title = "CodeCompanion" })
-				end)
-
-				return true
-			end,
-		})
-		:find()
-end
-
 M.picker = function(method, tele_opts)
 	local prompt_position = require("telescope.config").values.layout_config.horizontal.prompt_position
 	local fzf_opts = { ["--layout"] = prompt_position == "top" and "reverse" or "default" }

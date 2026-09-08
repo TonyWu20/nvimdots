@@ -8,6 +8,9 @@ settings["colorscheme"] = "catppuccin-macchiato"
 
 settings["use_copilot"] = false
 
+settings["use_chat"] = false
+settings["edit_prediction_source"] = "copilot"
+
 -- settings["dashboard_image"] = {
 -- 	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
 -- 	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],

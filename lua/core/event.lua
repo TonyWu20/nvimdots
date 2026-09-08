@@ -28,7 +28,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		"terminal",
 		"prompt",
 		"toggleterm",
-		"copilot",
 		"startuptime",
 		"tsplayground",
 	},

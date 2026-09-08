@@ -29,7 +29,6 @@ editor["ojroques/nvim-bufdel"] = {
 	cmd = { "BufDel", "BufDelAll", "BufDelOthers" },
 }
 -- NOTE: `flash.nvim` is a powerful plugin that can be used as partial or complete replacements for:
---  > `hop.nvim`,
 --  > `wilder.nvim`
 --  > `nvim-treehopper`
 -- Considering its steep learning curve as well as backward compatibility issues...
@@ -59,12 +58,6 @@ editor["echasnovski/mini.cursorword"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("editor.cursorword"),
-}
-editor["smoka7/hop.nvim"] = {
-	lazy = true,
-	version = "*",
-	event = { "CursorHold", "CursorHoldI" },
-	config = require("editor.hop"),
 }
 editor["brenoprata10/nvim-highlight-colors"] = {
 	lazy = true,

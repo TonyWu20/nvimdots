@@ -24,11 +24,6 @@ local mappings = {
 		-- Plugin: nvim-tree
 		["n|<leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent():with_desc("filetree: Find file"),
 		["n|<leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent():with_desc("filetree: Refresh"),
-
-		-- Plugin: sniprun
-		["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
-		["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
-
 		-- Plugin: toggleterm
 		["t|<Esc><Esc>"] = map_cmd([[<C-\><C-n>]]):with_noremap():with_silent(), -- switch to normal mode in terminal.
 		["n|<C-\\>"] = map_cr("ToggleTerm direction=horizontal")
@@ -242,28 +237,6 @@ local mappings = {
 			:with_noremap()
 			:with_silent()
 			:with_desc("debug: close debug UI"),
-
-		--- Plugin: CodeCompanion and edgy
-		["n|<leader>cs"] = map_callback(function()
-				helpers.select_chat_model()
-			end)
-			:with_noremap()
-			:with_silent()
-			:with_desc("tool: Select Chat Model"),
-		["nv|<leader>cc"] = map_callback(function()
-				require("edgy").toggle("right")
-			end)
-			:with_noremap()
-			:with_silent()
-			:with_desc("tool: Toggle CodeCompanion"),
-		["nv|<leader>ck"] = map_cr("CodeCompanionActions")
-			:with_noremap()
-			:with_silent()
-			:with_desc("tool: CodeCompanion Actions"),
-		["v|<leader>ca"] = map_cr("CodeCompanionChat Add")
-			:with_noremap()
-			:with_silent()
-			:with_desc("tool: Add selection to CodeCompanion Chat"),
 	},
 }
 
