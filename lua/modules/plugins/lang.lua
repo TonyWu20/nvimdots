@@ -8,6 +8,13 @@ lang["kevinhwang91/nvim-bqf"] = {
 		{ "junegunn/fzf", build = ":call fzf#install()" },
 	},
 }
+lang["ray-x/go.nvim"] = {
+	lazy = true,
+	ft = { "go", "gomod", "gosum" },
+	build = ":GoInstallBinaries",
+	config = require("lang.go"),
+	dependencies = "ray-x/guihua.lua",
+}
 lang["mrcjkb/rustaceanvim"] = {
 	lazy = true,
 	ft = "rust",
@@ -23,7 +30,7 @@ lang["Saecki/crates.nvim"] = {
 }
 lang["MeanderingProgrammer/render-markdown.nvim"] = {
 	lazy = true,
-	ft = { "markdown" },
+	ft = { "markdown", "codecompanion" },
 	config = require("lang.render-markdown"),
 }
 lang["iamcco/markdown-preview.nvim"] = {

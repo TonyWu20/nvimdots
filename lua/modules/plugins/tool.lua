@@ -36,6 +36,14 @@ tool["ibhagwan/smartyank.nvim"] = {
 	event = "BufReadPost",
 	config = require("tool.smartyank"),
 }
+tool["michaelb/sniprun"] = {
+	lazy = true,
+	-- If you see an error about a missing SnipRun executable,
+	-- run `bash ./install.sh` inside `~/.local/share/nvim/site/lazy/sniprun/`.
+	build = "bash ./install.sh",
+	cmd = { "SnipRun", "SnipReset", "SnipInfo" },
+	config = require("tool.sniprun"),
+}
 tool["akinsho/toggleterm.nvim"] = {
 	lazy = true,
 	cmd = {
@@ -58,6 +66,24 @@ tool["folke/which-key.nvim"] = {
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("tool.which-key"),
 }
+if settings.use_chat then
+	tool["olimorris/codecompanion.nvim"] = {
+		lazy = true,
+		cmd = {
+			"CodeCompanion",
+			"CodeCompanionActions",
+			"CodeCompanionChat",
+			"CodeCompanionCLI",
+			"CodeCompanionCmd",
+			"CodeCompanionHistory",
+			"CodeCompanionSummaries",
+		},
+		config = require("tool.codecompanion"),
+		dependencies = {
+			{ "ravitemer/codecompanion-history.nvim" },
+		},
+	}
+end
 -- Needs `fzf` installed and in $PATH
 tool["ibhagwan/fzf-lua"] = {
 	lazy = true,

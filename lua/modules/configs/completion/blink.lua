@@ -3,8 +3,14 @@ local icons = {
 	type = require("modules.utils.icons").get("type"),
 	cmp = require("modules.utils.icons").get("cmp"),
 }
+local settings = require("core.settings")
+local edit_prediction_source = settings["edit-prediction-source"] or settings.edit_prediction_source
+local use_copilot = settings.use_copilot and edit_prediction_source == "copilot"
+local use_minuet = edit_prediction_source == "oai-compatible"
 
 local source_labels = {
+	copilot = "[CPLT]",
+	minuet = "[AI]",
 	buffer = "[BUF]",
 	lazydev = "[LAZY]",
 	lsp = "[LSP]",
@@ -17,6 +23,12 @@ local source_labels = {
 }
 
 local sources_default = { "lazydev", "lsp", "snippets", "path", "buffer", "ripgrep", "spell", "tmux", "latex_symbols" }
+if use_copilot then
+	table.insert(sources_default, 1, "copilot")
+end
+if use_minuet then
+	table.insert(sources_default, 1, "minuet")
+end
 
 ---@module 'blink.cmp'
 ---@type blink.cmp.Config
@@ -57,6 +69,13 @@ local opts = {
 		default = sources_default,
 		providers = {
 			lsp = { max_items = 350 },
+			minuet = {
+				name = "Minuet",
+				module = "minuet.blink",
+				async = true,
+				timeout_ms = 3000,
+				score_offset = 100,
+			},
 			lazydev = {
 				module = "lazydev.integrations.blink",
 				name = "LazyDev",
@@ -88,6 +107,16 @@ local opts = {
 				},
 				score_offset = -15,
 				max_items = 3,
+			},
+			copilot = {
+				name = "Copilot",
+				module = "blink-copilot",
+				score_offset = 100,
+				async = true,
+				opts = {
+					max_completions = 3,
+					max_attempts = 4,
+				},
 			},
 			spell = {
 				name = "Spell",

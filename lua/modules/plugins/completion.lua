@@ -1,4 +1,9 @@
 local completion = {}
+local settings = require("core.settings")
+
+local edit_prediction_source = settings["edit-prediction-source"] or settings.edit_prediction_source
+local use_copilot_prediction = settings.use_copilot and edit_prediction_source == "copilot"
+local use_minuet_prediction = edit_prediction_source == "oai-compatible"
 
 completion["mason-org/mason.nvim"] = {
 	lazy = true,
@@ -61,10 +66,30 @@ completion["saghen/blink.cmp"] = {
 			config = require("completion.luasnip"),
 			dependencies = "rafamadriz/friendly-snippets",
 		},
+		{ "andersevenrud/cmp-tmux" },
 		{ "f3fora/cmp-spell" },
 		{ "kdheepak/cmp-latex-symbols" },
 		{ "mikavilpas/blink-ripgrep.nvim" },
 		{ "xzbdmw/colorful-menu.nvim" },
+		{
+			"milanglacier/minuet-ai.nvim",
+			cond = use_minuet_prediction,
+			config = require("completion.minuet"),
+		},
+		{
+			"fang2hou/blink-copilot",
+			cond = use_copilot_prediction,
+			dependencies = {
+				{
+					"zbirenbaum/copilot.lua",
+					lazy = true,
+					cond = use_copilot_prediction,
+					cmd = "Copilot",
+					event = "InsertEnter",
+					config = require("completion.copilot"),
+				},
+			},
+		},
 	},
 	opts_extend = { "sources.default" },
 }

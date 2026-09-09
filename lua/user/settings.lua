@@ -11,6 +11,15 @@ settings["use_copilot"] = false
 settings["use_chat"] = false
 settings["edit_prediction_source"] = "copilot"
 
+-- Disable plugins that are not used in this environment.
+-- (canonical: no edits to lua/modules; see wiki "Steps to disable a plugin")
+settings["disabled_plugins"] = {
+	"ray-x/go.nvim",
+	"michaelb/sniprun",
+	"smoka7/hop.nvim",
+	"andersevenrud/cmp-tmux",
+}
+
 -- settings["dashboard_image"] = {
 -- 	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
 -- 	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
