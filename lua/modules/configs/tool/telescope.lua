@@ -88,4 +88,5 @@ return function()
 	require("telescope").load_extension("zoxide")
 	require("telescope").load_extension("persisted")
 	require("telescope").load_extension("advanced_git_search")
+	require("telescope").load_extension("bibtex")
 end

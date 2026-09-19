@@ -398,6 +398,10 @@ return function()
 					},
 					padding = { left = 1 },
 				},
+				{
+					"require('wrapping').get_current_mode()",
+					padding = { left = 1 },
+				},
 				components.tabwidth,
 			},
 			lualine_y = {

@@ -18,6 +18,7 @@ ui["Jint-lzxy/nvim"] = {
 }
 ui["lewis6991/gitsigns.nvim"] = {
 	lazy = true,
+	version = "0.9",
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("ui.gitsigns"),
 }
@@ -30,6 +31,11 @@ ui["nvim-lualine/lualine.nvim"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("ui.lualine"),
+}
+ui["zbirenbaum/neodim"] = {
+	lazy = true,
+	event = "LspAttach",
+	config = require("ui.neodim"),
 }
 ui["karb94/neoscroll.nvim"] = {
 	lazy = true,
@@ -67,5 +73,7 @@ ui["dstein64/nvim-scrollview"] = {
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("ui.scrollview"),
 }
-
+ui["nvim-focus/focus.nvim"] = {
+	config = require("ui.focus"),
+}
 return ui

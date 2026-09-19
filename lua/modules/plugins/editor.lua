@@ -60,6 +60,10 @@ editor["echasnovski/mini.cursorword"] = {
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("editor.cursorword"),
 }
+editor["echasnovski/mini.surround"] = {
+	version = false,
+	config = require("editor.surround"),
+}
 editor["smoka7/hop.nvim"] = {
 	lazy = true,
 	version = "*",
@@ -89,6 +93,13 @@ editor["MagicDuck/grug-far.nvim"] = {
 	cmd = "GrugFar",
 	config = require("editor.grug-far"),
 }
+editor["keaising/im-select.nvim"] = {
+	lazy = false,
+	opts = {
+		default_im_select = "com.apple.keylayout.ABC",
+		default_command = "im-select",
+	},
+}
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------
@@ -113,6 +124,14 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 			init = require("editor.matchup"),
 		},
 		{
+			"hiphish/rainbow-delimiters.nvim",
+			config = require("editor.rainbow_delims"),
+		},
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			config = require("editor.ts-context"),
+		},
+		{
 			"windwp/nvim-ts-autotag",
 			config = require("editor.autotag"),
 		},
@@ -132,4 +151,16 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 	},
 }
 
+editor["lervag/vimtex"] = {
+	lazy = false,
+	config = require("editor.vimtex"),
+	ft = "tex",
+}
+editor["andrewferrier/wrapping.nvim"] = {
+	config = require("editor.wrapping"),
+}
+
+editor["folke/zen-mode.nvim"] = {
+	config = require("editor.zen-mode"),
+}
 return editor

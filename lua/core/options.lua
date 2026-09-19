@@ -69,7 +69,7 @@ local function load_options()
 		switchbuf = "usetab,uselast",
 		termguicolors = true,
 		timeout = true,
-		timeoutlen = 300,
+		timeoutlen = 0,
 		ttimeout = true,
 		ttimeoutlen = 0,
 		undodir = global.cache_dir .. "/undo//",
@@ -83,7 +83,7 @@ local function load_options()
 		wildignorecase = true,
 		-- Do NOT adjust the following option (winblend) if you're using transparent background
 		winblend = 0,
-		winminwidth = 10,
+		winminwidth = 5,
 		winwidth = 30,
 		wrapscan = true,
 		writebackup = true,
@@ -128,6 +128,8 @@ local function load_options()
 	for name, value in pairs(require("modules.utils").extend_config(options, "user.options")) do
 		vim.api.nvim_set_option_value(name, value, {})
 	end
+	bind_option(bw_local)
+	vim.g.c_syntax_for_h = true
 end
 
 -- Newtrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456

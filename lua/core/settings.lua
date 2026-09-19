@@ -2,11 +2,11 @@ local settings = {}
 
 -- Set to false if you want to use HTTPS to update plugins and Treesitter parsers.
 ---@type boolean
-settings["use_ssh"] = true
+settings["use_ssh"] = false
 
 -- Set to false if you don't use Copilot.
 ---@type boolean
-settings["use_copilot"] = true
+settings["use_copilot"] = false
 
 -- Default secret source for AI adapters. Set this to an environment variable
 -- Examples:

@@ -33,7 +33,7 @@ tool["nvim-tree/nvim-tree.lua"] = {
 }
 tool["ibhagwan/smartyank.nvim"] = {
 	lazy = true,
-	event = "BufReadPost",
+	event = { "BufReadPost", "BufEnter" },
 	config = require("tool.smartyank"),
 }
 tool["michaelb/sniprun"] = {
@@ -92,6 +92,18 @@ tool["ibhagwan/fzf-lua"] = {
 	config = require("tool.fzf-lua"),
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 }
+tool["epwalsh/obsidian.nvim"] = {
+	lazy = true,
+	event = {
+		"BufReadPre /Users/tonywu/Library/Mobile Documents/com~apple~CloudDocs/MPhil/Work/Final_thesis/**/*.md",
+		"BufReadPre /Users/tonywu/Library/Mobile Documents/com~apple~CloudDocs/MPhil/Work/Final_thesis/*.md",
+	},
+	dependencies = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp", "nvim-telescope/telescope.nvim" },
+	opts = {
+		dir = "/Users/tonywu/Library/Mobile Documents/com~apple~CloudDocs/MPhil/Work/Final_thesis",
+	},
+	config = require("tool.obsidian"),
+}
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --
@@ -126,6 +138,13 @@ tool["nvim-telescope/telescope.nvim"] = {
 				"sindrets/diffview.nvim",
 			},
 		},
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{ "nvim-telescope/telescope-frecency.nvim", dependencies = {
+			{ "kkharji/sqlite.lua" },
+		} },
+		{ "jvgrootveld/telescope-zoxide" },
+		{ "nvim-telescope/telescope-live-grep-args.nvim" },
+		{ "nvim-telescope/telescope-bibtex.nvim" },
 	},
 }
 
